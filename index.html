@@ -44,21 +44,22 @@
     .wrap{
       max-width: 1040px;
       margin: 0 auto;
-      padding: 48px 18px 64px;
+      padding: 44px 18px 64px;
     }
 
-    /* HEADER (big avatar fully left) */
+    /* HEADER */
     .header{
       display:flex;
       align-items:flex-start;
       gap:22px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .avatar{
-      width: 128px;
-      height: 128px;
-      border-radius: 999px;
+    /* ✅ rectangular big profile photo */
+    .photo{
+      width: 240px;     /* بزرگ */
+      height: 170px;    /* مستطیلی */
+      border-radius: 16px;
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
       object-fit: cover;
@@ -66,7 +67,7 @@
       flex: 0 0 auto;
     }
 
-    .headerMain{ flex: 1; }
+    .headerMain{flex:1}
 
     .titleRow{
       display:flex;
@@ -77,10 +78,10 @@
     }
 
     h1{
-      font-size: 22px;
+      font-size: 24px;
       margin:0 0 6px;
       letter-spacing:.2px;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     .subtitle{
@@ -88,22 +89,22 @@
       color: var(--muted);
       font-size: 14.5px;
       line-height: 1.5;
-      max-width: 60ch;
+      max-width: 62ch;
     }
 
-    /* Pills (top right links) */
+    /* Pills */
     .pillrow{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       align-items:center;
       justify-content:flex-end;
+      margin-top: 6px;
     }
 
     .pill{
       display:inline-flex;
       align-items:center;
-      gap:8px;
       padding:10px 12px;
       border-radius: 999px;
       background: rgba(255,255,255,.06);
@@ -135,7 +136,7 @@
     .card h2{
       font-size: 14px;
       margin:0 0 10px;
-      font-weight: 700;
+      font-weight: 750;
       letter-spacing:.18px;
       color: rgba(255,255,255,.9);
     }
@@ -146,7 +147,13 @@
       line-height: 1.55;
     }
 
-    /* Demo */
+    /* ✅ micro-demo should NOT be full-width */
+    .demoCard{
+      max-width: 760px;     /* محدود */
+      margin-left: 0;       /* سمت چپ */
+      margin-right: auto;
+    }
+
     .demoRow{
       display:flex;
       gap: 12px;
@@ -170,13 +177,14 @@
     input[type="range"]{width: 180px;}
 
     .eps{
-      font-weight: 700;
+      font-weight: 800;
       color: var(--accent);
     }
 
+    /* ✅ keep the noise figure small */
     .demoCanvas{
       width:100%;
-      height:190px;
+      height:140px;      /* کوچیک‌تر */
       border-radius: 14px;
       border:1px solid var(--line);
       background: rgba(0,0,0,.25);
@@ -222,7 +230,7 @@
       border-color: rgba(255,255,255,.18);
     }
 
-    .linkcard .t{font-weight:700; font-size: 13.5px;}
+    .linkcard .t{font-weight:800; font-size: 13.5px;}
     .linkcard .d{color: var(--muted); font-size: 12.8px; line-height: 1.35;}
 
     footer{
@@ -234,7 +242,13 @@
 
     @media (max-width: 900px){
       .pillrow{justify-content:flex-start}
-      .avatar{width:110px;height:110px;}
+      .photo{width:200px;height:150px;}
+    }
+
+    @media (max-width: 640px){
+      .header{flex-direction:column}
+      .photo{width:100%; height: 220px;}
+      .demoCard{max-width: 100%;}
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -250,8 +264,8 @@
 
     <!-- HEADER -->
     <header class="header">
-      <!-- 1) عکس خودت: assets/me.jpg -->
-      <img class="avatar" src="assets/me.jpg" alt="Maryam photo" />
+      <!-- ✅ عکس خودت: این فایل را بگذار داخل assets/ و اسمش را همین کن -->
+      <img class="photo" src="assets/me.jpg" alt="Maryam photo" />
 
       <div class="headerMain">
         <div class="titleRow">
@@ -262,7 +276,7 @@
             </p>
           </div>
 
-          <!-- 2) لینک‌ها را اینجا عوض کن -->
+          <!-- لینک‌ها -->
           <nav class="pillrow">
             <a class="pill" href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer">GitHub</a>
             <a class="pill" href="#" target="_blank" rel="noreferrer">Google Scholar</a>
@@ -273,8 +287,8 @@
       </div>
     </header>
 
-    <!-- DEMO (بالا می‌مونه) -->
-    <section class="card">
+    <!-- MICRO-DEMO (کوچیک) -->
+    <section class="card demoCard">
       <h2>DP micro-demo (privacy in motion)</h2>
       <div class="demoRow">
         <div class="muted">Lower ε ⇒ stronger privacy ⇒ more noise</div>
@@ -284,19 +298,20 @@
           <span class="eps" id="epsVal">1.2</span>
         </div>
       </div>
+
       <canvas id="demo" class="demoCanvas"></canvas>
+
       <p class="muted" style="margin:10px 0 0;">
         A tiny visual intuition: a vehicle path with DP-style perturbation for shared telemetry.
       </p>
     </section>
 
-    <!-- FEATURED (پایین + همه پروژه‌ها در یک ردیف) -->
+    <!-- FEATURED (پایین + ردیفی) -->
     <section class="card">
       <h2>Featured project pages</h2>
       <p class="muted">Specialized pages (each hosted separately) — linked here for quick access.</p>
 
       <div class="linksRow">
-        <!-- 3) لینک پروژه‌ها را اینجا بذار -->
         <a class="linkcard" href="#" target="_blank" rel="noreferrer">
           <div class="t">Timing Inference (Client–Server)</div>
           <div class="d">Offset inference, jitter modeling, attacker analysis</div>
@@ -329,7 +344,7 @@
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // --- Subtle background: moving particles ---
+    // --- Background particles ---
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let W=0,H=0,particles=[];
@@ -380,7 +395,7 @@
     }
     bgLoop();
 
-    // --- Micro-demo: path + DP-ish noise controlled by epsilon slider ---
+    // --- Micro-demo ---
     const demo = document.getElementById('demo');
     const dctx = demo.getContext('2d');
     let dW=0,dH=0;
@@ -410,20 +425,20 @@
       dctx.lineWidth = 1*devicePixelRatio;
       dctx.strokeRect(10*devicePixelRatio, 10*devicePixelRatio, dW-20*devicePixelRatio, dH-20*devicePixelRatio);
 
-      const pad = 26*devicePixelRatio;
+      const pad = 22*devicePixelRatio;
       const x0 = pad, x1 = dW - pad;
       const yMid = dH*0.60;
 
       const pts = [];
-      const N = 42;
+      const N = 32; // کمتر تا داخل ارتفاع کوچک قشنگ‌تر بشه
       for(let i=0;i<N;i++){
         const t = i/(N-1);
         const x = x0 + (x1-x0)*t;
-        const y = yMid + Math.sin(t*Math.PI*1.2)*(-0.22*dH) + Math.sin(t*Math.PI*3.0)*(-0.05*dH);
+        const y = yMid + Math.sin(t*Math.PI*1.1)*(-0.20*dH) + Math.sin(t*Math.PI*2.6)*(-0.05*dH);
         pts.push({x,y});
       }
 
-      const sigma = Math.min(22, Math.max(2.5, 18/eps)) * devicePixelRatio;
+      const sigma = Math.min(20, Math.max(2.0, 16/eps)) * devicePixelRatio;
 
       // true path
       dctx.lineWidth = 2*devicePixelRatio;
@@ -446,7 +461,7 @@
       }
       dctx.stroke();
 
-      // legend
+      // tiny legend
       dctx.font = `${12*devicePixelRatio}px ui-sans-serif, system-ui`;
       dctx.fillStyle = 'rgba(255,255,255,.70)';
       dctx.fillText('true path', pad, 24*devicePixelRatio);
