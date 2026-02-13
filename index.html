@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Maryam Ghorbanvirdi — Privacy & Security</title>
   <meta name="description" content="PhD researcher in Privacy & Security for Autonomous Systems. Differential Privacy." />
+
   <style>
     :root{
       --bg: #0b0f14;
       --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.08);
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.68);
       --line: rgba(255,255,255,.12);
@@ -17,20 +17,22 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --r: 18px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(130,230,230,.12), transparent 55%),
-                  radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,.12), transparent 55%),
-                  var(--bg);
-      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(130,230,230,.12), transparent 55%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,.12), transparent 55%),
+        var(--bg);
     }
 
     /* Subtle animated background */
-    #bg {
+    #bg{
       position: fixed;
       inset: 0;
       z-index: -1;
@@ -40,50 +42,56 @@
     }
 
     .wrap{
-      max-width: 980px;
+      max-width: 1040px;
       margin: 0 auto;
       padding: 48px 18px 64px;
     }
 
-    .top{
+    /* HEADER (big avatar fully left) */
+    .header{
       display:flex;
+      align-items:flex-start;
       gap:22px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom: 22px;
-    }
-
-    .hero{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      flex-wrap:wrap;
+      margin-bottom: 14px;
     }
 
     .avatar{
-      width:74px;height:74px;
+      width: 128px;
+      height: 128px;
       border-radius: 999px;
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       box-shadow: var(--shadow);
       object-fit: cover;
       background: rgba(255,255,255,.05);
+      flex: 0 0 auto;
+    }
+
+    .headerMain{ flex: 1; }
+
+    .titleRow{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
     }
 
     h1{
       font-size: 22px;
-      margin:0 0 4px;
+      margin:0 0 6px;
       letter-spacing:.2px;
-      font-weight: 680;
+      font-weight: 700;
     }
+
     .subtitle{
       margin:0;
       color: var(--muted);
       font-size: 14.5px;
-      line-height: 1.45;
-      max-width: 56ch;
+      line-height: 1.5;
+      max-width: 60ch;
     }
 
+    /* Pills (top right links) */
     .pillrow{
       display:flex;
       gap:10px;
@@ -91,6 +99,7 @@
       align-items:center;
       justify-content:flex-end;
     }
+
     .pill{
       display:inline-flex;
       align-items:center;
@@ -105,23 +114,14 @@
       transition: transform .15s ease, background .15s ease, border .15s ease;
       backdrop-filter: blur(8px);
     }
+
     .pill:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.09);
       border-color: rgba(255,255,255,.18);
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      margin-top: 14px;
-    }
-    @media (max-width: 900px){
-      .grid{grid-template-columns: 1fr;}
-      .pillrow{justify-content:flex-start}
-    }
-
+    /* Cards */
     .card{
       background: linear-gradient(180deg, var(--card), rgba(255,255,255,.03));
       border: 1px solid var(--line);
@@ -129,25 +129,80 @@
       box-shadow: var(--shadow);
       padding: 16px;
       backdrop-filter: blur(10px);
+      margin-top: 14px;
     }
 
     .card h2{
       font-size: 14px;
       margin:0 0 10px;
-      font-weight: 680;
+      font-weight: 700;
       letter-spacing:.18px;
       color: rgba(255,255,255,.9);
     }
 
-    .muted{color: var(--muted); font-size: 13.5px; line-height: 1.55;}
-
-    .links{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 10px;
-      margin-top: 10px;
+    .muted{
+      color: var(--muted);
+      font-size: 13.5px;
+      line-height: 1.55;
     }
+
+    /* Demo */
+    .demoRow{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+
+    .slider{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    input[type="range"]{width: 180px;}
+
+    .eps{
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .demoCanvas{
+      width:100%;
+      height:190px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      display:block;
+    }
+
+    /* Featured projects in ONE row */
+    .linksRow{
+      display:flex;
+      gap:12px;
+      margin-top:10px;
+      overflow-x:auto;
+      padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+
+    .linksRow::-webkit-scrollbar{ height: 8px; }
+    .linksRow::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.12);
+      border-radius: 999px;
+    }
+
     .linkcard{
+      flex: 0 0 270px;
+      scroll-snap-align: start;
       display:flex;
       flex-direction:column;
       gap:6px;
@@ -158,45 +213,17 @@
       text-decoration:none;
       color: var(--text);
       transition: transform .15s ease, background .15s ease, border .15s ease;
-      min-height: 76px;
+      min-height: 86px;
     }
+
     .linkcard:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.07);
       border-color: rgba(255,255,255,.18);
     }
-    .linkcard .t{font-weight:650; font-size: 13.5px;}
+
+    .linkcard .t{font-weight:700; font-size: 13.5px;}
     .linkcard .d{color: var(--muted); font-size: 12.8px; line-height: 1.35;}
-
-    .demoRow{
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      margin-bottom: 10px;
-    }
-    .slider{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.04);
-    }
-    input[type="range"]{width: 180px;}
-    .eps{
-      font-weight: 650;
-      color: var(--accent);
-    }
-
-    .demoCanvas{
-      width:100%;
-      height:180px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,.25);
-      display:block;
-    }
 
     footer{
       margin-top: 18px;
@@ -205,93 +232,108 @@
       text-align:center;
     }
 
+    @media (max-width: 900px){
+      .pillrow{justify-content:flex-start}
+      .avatar{width:110px;height:110px;}
+    }
+
     @media (prefers-reduced-motion: reduce){
       #bg{display:none;}
     }
   </style>
 </head>
+
 <body>
   <canvas id="bg"></canvas>
 
   <div class="wrap">
-    <div class="top">
-      <div class="hero">
-        <img class="avatar" src="assets/me.jpg" alt="Maryam photo" />
-        <div>
-          <h1>Maryam Ghorbanvirdi</h1>
-          <p class="subtitle">
-            PhD student — Privacy & Security in Autonomous Systems • working on Differential Privacy (DP)
-          </p>
-        </div>
-      </div>
 
-      <div class="pillrow">
-        <!-- Replace these links -->
-        <a class="pill" href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="pill" href="#" target="_blank" rel="noreferrer">Google Scholar</a>
-        <a class="pill" href="#" target="_blank" rel="noreferrer">CV</a>
-        <a class="pill" href="mailto:your@email.com">Email</a>
-      </div>
-    </div>
+    <!-- HEADER -->
+    <header class="header">
+      <!-- 1) عکس خودت: assets/me.jpg -->
+      <img class="avatar" src="assets/me.jpg" alt="Maryam photo" />
 
-    <div class="grid">
-      <section class="card">
-        <h2>Featured project pages</h2>
-        <p class="muted">
-          Specialized pages (each hosted separately) — linked here for quick access.
-        </p>
-
-        <div class="links">
-          <!-- Replace href + text with your real pages -->
-          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
-            <div class="t">Timing Inference (Client–Server)</div>
-            <div class="d">Offset inference, jitter modeling, attacker analysis</div>
-          </a>
-          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
-            <div class="t">SoK: DP in CPS / Autonomous Systems</div>
-            <div class="d">Taxonomy + Privacy/Utility/Safety scoring framework</div>
-          </a>
-          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
-            <div class="t">Talks & Posters</div>
-            <div class="d">Slides, demos, and short explainers</div>
-          </a>
-          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
-            <div class="t">Code & Reproducibility</div>
-            <div class="d">Datasets, scripts, and experiment notes</div>
-          </a>
-        </div>
-      </section>
-
-      <aside class="card">
-        <h2>DP micro-demo (privacy in motion)</h2>
-        <div class="demoRow">
-          <div class="muted">Lower ε ⇒ stronger privacy ⇒ more noise</div>
-          <div class="slider">
-            <span class="muted">ε</span>
-            <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
-            <span class="eps" id="epsVal">1.2</span>
+      <div class="headerMain">
+        <div class="titleRow">
+          <div>
+            <h1>Maryam Ghorbanvirdi</h1>
+            <p class="subtitle">
+              PhD student — Privacy &amp; Security in Autonomous Systems • working on Differential Privacy (DP)
+            </p>
           </div>
+
+          <!-- 2) لینک‌ها را اینجا عوض کن -->
+          <nav class="pillrow">
+            <a class="pill" href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="pill" href="#" target="_blank" rel="noreferrer">Google Scholar</a>
+            <a class="pill" href="#" target="_blank" rel="noreferrer">CV</a>
+            <a class="pill" href="mailto:your@email.com">Email</a>
+          </nav>
         </div>
-        <canvas id="demo" class="demoCanvas"></canvas>
-        <p class="muted" style="margin:10px 0 0;">
-          A tiny visual intuition: a vehicle path with DP-style perturbation for shared telemetry.
-        </p>
-      </aside>
-    </div>
+      </div>
+    </header>
+
+    <!-- DEMO (بالا می‌مونه) -->
+    <section class="card">
+      <h2>DP micro-demo (privacy in motion)</h2>
+      <div class="demoRow">
+        <div class="muted">Lower ε ⇒ stronger privacy ⇒ more noise</div>
+        <div class="slider">
+          <span class="muted">ε</span>
+          <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
+          <span class="eps" id="epsVal">1.2</span>
+        </div>
+      </div>
+      <canvas id="demo" class="demoCanvas"></canvas>
+      <p class="muted" style="margin:10px 0 0;">
+        A tiny visual intuition: a vehicle path with DP-style perturbation for shared telemetry.
+      </p>
+    </section>
+
+    <!-- FEATURED (پایین + همه پروژه‌ها در یک ردیف) -->
+    <section class="card">
+      <h2>Featured project pages</h2>
+      <p class="muted">Specialized pages (each hosted separately) — linked here for quick access.</p>
+
+      <div class="linksRow">
+        <!-- 3) لینک پروژه‌ها را اینجا بذار -->
+        <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+          <div class="t">Timing Inference (Client–Server)</div>
+          <div class="d">Offset inference, jitter modeling, attacker analysis</div>
+        </a>
+
+        <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+          <div class="t">SoK: DP in CPS / Autonomous Systems</div>
+          <div class="d">Taxonomy + Privacy/Utility/Safety scoring framework</div>
+        </a>
+
+        <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+          <div class="t">Talks & Posters</div>
+          <div class="d">Slides, demos, and short explainers</div>
+        </a>
+
+        <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+          <div class="t">Code & Reproducibility</div>
+          <div class="d">Datasets, scripts, and experiment notes</div>
+        </a>
+      </div>
+    </section>
 
     <footer>
       © <span id="y"></span> · Built with GitHub Pages
     </footer>
+
   </div>
 
   <script>
     // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // --- Subtle background: moving "privacy field" particles ---
+    // --- Subtle background: moving particles ---
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let W=0,H=0,particles=[];
+
     function resizeBg(){
       W = bg.width  = window.innerWidth * devicePixelRatio;
       H = bg.height = window.innerHeight * devicePixelRatio;
@@ -309,24 +351,22 @@
 
     function bgLoop(){
       bctx.clearRect(0,0,W,H);
-      // Very subtle lines + dots
       for(const p of particles){
         p.x += p.vx; p.y += p.vy;
         if(p.x<0) p.x=W; if(p.x>W) p.x=0;
         if(p.y<0) p.y=H; if(p.y>H) p.y=0;
 
-        // dot
         bctx.beginPath();
         bctx.arc(p.x,p.y,p.r,0,Math.PI*2);
         bctx.fillStyle = 'rgba(130,230,230,0.12)';
         bctx.fill();
 
-        // link to nearby
         for(const q of particles){
           const dx=p.x-q.x, dy=p.y-q.y;
           const d2=dx*dx+dy*dy;
-          if(d2>0 && d2 < (120*devicePixelRatio)*(120*devicePixelRatio)){
-            const a = 0.08 * (1 - d2/((120*devicePixelRatio)*(120*devicePixelRatio)));
+          const maxD = (120*devicePixelRatio)*(120*devicePixelRatio);
+          if(d2>0 && d2 < maxD){
+            const a = 0.08 * (1 - d2/maxD);
             bctx.strokeStyle = `rgba(170,140,255,${a})`;
             bctx.lineWidth = 1*devicePixelRatio;
             bctx.beginPath();
@@ -344,6 +384,7 @@
     const demo = document.getElementById('demo');
     const dctx = demo.getContext('2d');
     let dW=0,dH=0;
+
     function resizeDemo(){
       const rect = demo.getBoundingClientRect();
       dW = demo.width  = rect.width * devicePixelRatio;
@@ -352,7 +393,6 @@
     resizeDemo();
     window.addEventListener('resize', resizeDemo);
 
-    // Simple Gaussian-ish noise (Box-Muller)
     function randn(){
       let u=0, v=0;
       while(u===0) u=Math.random();
@@ -366,16 +406,14 @@
     function drawDemo(eps){
       dctx.clearRect(0,0,dW,dH);
 
-      // Frame
       dctx.strokeStyle = 'rgba(255,255,255,.10)';
       dctx.lineWidth = 1*devicePixelRatio;
       dctx.strokeRect(10*devicePixelRatio, 10*devicePixelRatio, dW-20*devicePixelRatio, dH-20*devicePixelRatio);
 
       const pad = 26*devicePixelRatio;
       const x0 = pad, x1 = dW - pad;
-      const yMid = dH*0.58;
+      const yMid = dH*0.60;
 
-      // Base path: a gentle curve
       const pts = [];
       const N = 42;
       for(let i=0;i<N;i++){
@@ -385,10 +423,9 @@
         pts.push({x,y});
       }
 
-      // Noise scale ~ 1/eps (clamped)
       const sigma = Math.min(22, Math.max(2.5, 18/eps)) * devicePixelRatio;
 
-      // Draw true path
+      // true path
       dctx.lineWidth = 2*devicePixelRatio;
       dctx.strokeStyle = 'rgba(255,255,255,.75)';
       dctx.beginPath();
@@ -396,7 +433,7 @@
       for(const p of pts) dctx.lineTo(p.x,p.y);
       dctx.stroke();
 
-      // Draw noisy observations
+      // noisy path
       dctx.lineWidth = 2*devicePixelRatio;
       dctx.strokeStyle = 'rgba(130,230,230,.85)';
       dctx.beginPath();
@@ -409,16 +446,14 @@
       }
       dctx.stroke();
 
-      // Legend
+      // legend
       dctx.font = `${12*devicePixelRatio}px ui-sans-serif, system-ui`;
       dctx.fillStyle = 'rgba(255,255,255,.70)';
       dctx.fillText('true path', pad, 24*devicePixelRatio);
       dctx.fillStyle = 'rgba(130,230,230,.95)';
       dctx.fillText('noisy shared telemetry', pad+90*devicePixelRatio, 24*devicePixelRatio);
-
-      // epsilon label
       dctx.fillStyle = 'rgba(255,255,255,.55)';
-      dctx.fillText(`noise ~ 1/ε`, dW - 110*devicePixelRatio, 24*devicePixelRatio);
+      dctx.fillText('noise ~ 1/ε', dW - 110*devicePixelRatio, 24*devicePixelRatio);
     }
 
     function update(){
