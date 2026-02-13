@@ -3,192 +3,217 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maryam Ghorbanvirdi</title>
+  <title>Maryam Ghorbanvirdi — PhD Researcher</title>
   <style>
     :root {
       --bg: #0b0f14;
       --text: #ffffff;
       --muted: rgba(255, 255, 255, 0.5);
       --accent: #82e6e6;
-      --line: rgba(255, 255, 255, 0.1);
+      --line: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.02);
     }
 
     * { box-sizing: border-box; }
-    body, html { margin: 0; padding: 0; background-color: var(--bg); color: var(--text); }
+    html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-      line-height: 1.7;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
 
-    /* Your Background Canvas */
+    /* THE BACKGROUND (Your original moves) */
     #bg {
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: 0.7;
+      opacity: 0.8;
       pointer-events: none;
+      background: 
+        radial-gradient(1200px 800px at 20% 10%, rgba(130,230,230,0.08), transparent 55%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,0.08), transparent 55%);
     }
 
-    /* Minimal Layout */
+    /* SECTION LAYOUT */
+    .page {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
     .container {
-      max-width: 680px;
+      width: min(900px, 100%);
       margin: 0 auto;
-      padding: 120px 24px;
     }
 
-    header { margin-bottom: 80px; }
-    
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin: 0 0 10px 0;
-    }
-
-    .tagline {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin-bottom: 30px;
-    }
-
-    .links { display: flex; gap: 24px; font-size: 0.9rem; }
-    .links a {
-      color: var(--text);
-      text-decoration: none;
-      opacity: 0.6;
-      transition: opacity 0.2s;
-    }
-    .links a:hover { opacity: 1; color: var(--accent); }
-
-    /* Sections */
-    section { margin-bottom: 100px; }
-    
-    h2 {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--accent);
-      margin-bottom: 30px;
-    }
-
-    /* Micro Demo - Minimalized */
-    .demo-area { margin: 40px 0; }
-    .controls {
+    /* TOP NAV */
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 60px;
+    }
+    .pills { display: flex; gap: 20px; }
+    .pills a {
+      text-decoration: none;
+      color: var(--muted);
       font-size: 0.85rem;
-      font-family: monospace;
+      font-weight: 500;
+      transition: color 0.3s;
     }
-    canvas#demo {
-      width: 100%;
-      height: 160px;
-      border-bottom: 1px solid var(--line);
+    .pills a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
     }
-    input[type=range] {
-      width: 120px;
-      accent-color: var(--accent);
-      background: none;
-      cursor: pointer;
+    h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 20px; }
+    .subtitle { font-size: 1.1rem; color: var(--muted); max-width: 440px; }
+    .photo { 
+      width: 100%; height: 400px; border-radius: 2px; object-fit: cover; 
+      filter: grayscale(1); opacity: 0.8; border: 1px solid var(--line);
     }
 
-    /* Project List - Very Minimal */
-    .project {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--line);
+    /* DP DEMO */
+    .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 30px; }
+    .demo-panel {
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+    }
+    .controls { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; font-family: monospace; font-size: 0.8rem; }
+    input[type=range] { flex-grow: 1; accent-color: var(--accent); }
+    canvas#demo { width: 100%; height: 200px; border-top: 1px solid var(--line); padding-top: 20px; }
+
+    /* PROJECTS */
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); border: 1px solid var(--line); }
+    .project-card {
+      padding: 40px;
+      background: var(--bg);
       text-decoration: none;
       color: inherit;
-      transition: padding-left 0.3s ease;
+      transition: background 0.3s;
     }
-    .project:hover { padding-left: 10px; color: var(--accent); }
-    .project-name { font-weight: 500; }
-    .project-meta { font-size: 0.85rem; color: var(--muted); }
+    .project-card:hover { background: var(--glass); }
+    .project-card h3 { margin: 0 0 10px; font-size: 1.1rem; }
+    .project-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
 
-    footer {
-      margin-top: 150px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--line);
-      padding-top: 20px;
+    /* NAVIGATION DOTS */
+    .dots {
+      position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 15px;
+    }
+    .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--line);
+      cursor: pointer; transition: 0.3s;
+    }
+    .dot.active { background: var(--accent); transform: scale(1.5); }
+
+    /* SCROLL ICON */
+    .scroll-btn {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
+      color: var(--accent); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em;
     }
 
-    @media (max-width: 600px) {
-      .container { padding: 60px 20px; }
-      h1 { font-size: 2rem; }
-      .project { flex-direction: column; gap: 4px; }
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .photo { height: 300px; order: -1; }
+      .project-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
+
   <canvas id="bg"></canvas>
 
-  <div class="container">
-    <header>
-      <h1>Maryam Ghorbanvirdi</h1>
-      <p class="tagline">PhD Researcher. Privacy & Security in Autonomous Systems.</p>
-      <div class="links">
-        <a href="https://github.com/GhorbanvirdiMaryam">GitHub</a>
-        <a href="#">Scholar</a>
-        <a href="#">CV</a>
-        <a href="mailto:email@address.com">Email</a>
-      </div>
-    </header>
-
-    <section>
-      <h2>Research</h2>
-      <p>
-        I develop privacy-preserving frameworks for cyber-physical systems, specifically focusing on 
-        the application of <strong>Differential Privacy</strong> to timing and behavioral data.
-      </p>
-    </section>
-
-    <section>
-      <h2>Interactive: DP Perturbation</h2>
-      <div class="demo-area">
-        <div class="controls">
-          <span>privacy_epsilon: <span id="epsVal">1.2</span></span>
-          <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
-        </div>
-        <canvas id="demo"></canvas>
-      </div>
-    </section>
-
-    <section>
-      <h2>Selected Works</h2>
-      
-      <a href="#" class="project">
-        <span class="project-name">Timing Inference Attack Analysis</span>
-        <span class="project-meta">Research Paper</span>
-      </a>
-
-      <a href="#" class="project">
-        <span class="project-name">SoK: DP in Autonomous Systems</span>
-        <span class="project-meta">Framework</span>
-      </a>
-
-      <a href="#" class="project">
-        <span class="project-name">Privacy/Utility Scoring Engine</span>
-        <span class="project-meta">Codebase</span>
-      </a>
-    </section>
-
-    <footer>
-      © <span id="y"></span> — Built with simplicity.
-    </footer>
+  <div class="dots">
+    <div class="dot active" data-target="#p1"></div>
+    <div class="dot" data-target="#p2"></div>
+    <div class="dot" data-target="#p3"></div>
   </div>
 
+  <section class="page" id="p1">
+    <div class="container">
+      <div class="topbar">
+        <span style="font-weight: 700; font-size: 0.9rem;">MG.</span>
+        <nav class="pills">
+          <a href="https://github.com/GhorbanvirdiMaryam">GitHub</a>
+          <a href="#">Scholar</a>
+          <a href="#">CV</a>
+          <a href="mailto:email@address.com">Email</a>
+        </nav>
+      </div>
+      <div class="hero">
+        <div>
+          <h1>Maryam Ghorbanvirdi</h1>
+          <p class="subtitle">PhD Researcher specializing in Privacy-Preserving methods for Autonomous Systems and Cyber-Physical frameworks.</p>
+          <a href="#p2" class="scroll-btn">VIEW RESEARCH <span>↓</span></a>
+        </div>
+        <img class="photo" src="IMG_4291.jpeg" alt="Profile" />
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="p2">
+    <div class="container">
+      <h2 class="section-title">01. Interactive Concept</h2>
+      <div class="demo-panel">
+        <div class="controls">
+          <span>privacy_epsilon</span>
+          <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
+          <span style="color:var(--accent)" id="epsVal">1.2</span>
+        </div>
+        <canvas id="demo"></canvas>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 20px;">
+          Differential Privacy (DP) introduces controlled noise to protect individual data points while maintaining aggregate utility.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="p3">
+    <div class="container">
+      <h2 class="section-title">02. Selected Work</h2>
+      <div class="project-grid">
+        <a href="#" class="project-card">
+          <h3>Timing Inference</h3>
+          <p>Offset inference and jitter modeling in client-server systems.</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>SoK: DP in CPS</h3>
+          <p>A systematic framework for safety and utility scoring.</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>Talks & Presentations</h3>
+          <p>Slides and materials from recent conference posters.</p>
+        </a>
+        <a href="#" class="project-card">
+          <h3>Open Source</h3>
+          <p>Reproducibility scripts and experimental datasets.</p>
+        </a>
+      </div>
+      <footer style="margin-top: 40px; font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between;">
+        <span>© <span id="y"></span> — MARYAM GHORBANVIRDI</span>
+        <a href="#p1" style="color: inherit; text-decoration: none;">BACK TO TOP ↑</a>
+      </footer>
+    </div>
+  </section>
+
   <script>
-    // 1. Footer Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // 2. BACKGROUND ANIMATION (Your original logic)
+    // BACKGROUND LOGIC (Your original movement + lines)
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let W, H, particles = [];
@@ -196,12 +221,13 @@
     function resizeBg(){
       W = bg.width = window.innerWidth * devicePixelRatio;
       H = bg.height = window.innerHeight * devicePixelRatio;
-      const n = Math.floor((window.innerWidth * window.innerHeight) / 20000);
-      particles = Array.from({length: Math.max(40, n)}, () => ({
-        x: Math.random()*W, y: Math.random()*H,
-        vx:(Math.random()-.5)*0.2*devicePixelRatio,
-        vy:(Math.random()-.5)*0.2*devicePixelRatio,
-        r: (0.7 + Math.random()*1.2)*devicePixelRatio
+      const n = Math.floor((window.innerWidth * window.innerHeight) / 18000);
+      particles = Array.from({length: Math.max(45, n)}, () => ({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        vx:(Math.random()-.5)*0.25*devicePixelRatio,
+        vy:(Math.random()-.5)*0.25*devicePixelRatio,
+        r: (0.8 + Math.random()*1.5)*devicePixelRatio
       }));
     }
     window.addEventListener('resize', resizeBg);
@@ -215,16 +241,16 @@
         if(p.y<0) p.y=H; if(p.y>H) p.y=0;
         bctx.beginPath();
         bctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        bctx.fillStyle = 'rgba(130,230,230,0.12)';
+        bctx.fillStyle = 'rgba(130,230,230,0.15)';
         bctx.fill();
       });
-      const maxD = (150*devicePixelRatio)**2;
+      const maxD = (140*devicePixelRatio)**2;
       for (let i=0; i<particles.length; i++){
         for (let j=i+1; j<particles.length; j++){
           const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
           const d2=dx*dx+dy*dy;
           if(d2 < maxD){
-            bctx.strokeStyle = `rgba(170,140,255,${0.06 * (1 - d2/maxD)})`;
+            bctx.strokeStyle = `rgba(170,140,255,${0.08 * (1 - d2/maxD)})`;
             bctx.beginPath(); bctx.moveTo(particles[i].x, particles[i].y);
             bctx.lineTo(particles[j].x, particles[j].y); bctx.stroke();
           }
@@ -234,7 +260,7 @@
     }
     bgLoop();
 
-    // 3. MINIMAL DP DEMO
+    // INTERACTIVE DP DEMO
     const demo = document.getElementById('demo');
     const dctx = demo.getContext('2d');
     const epsEl = document.getElementById('eps');
@@ -245,27 +271,15 @@
       const dH = demo.height = demo.clientHeight * devicePixelRatio;
       const eps = parseFloat(epsEl.value);
       epsValEl.textContent = eps.toFixed(1);
-
+      const sigma = (14 / eps) * devicePixelRatio;
       const pts = [];
-      for(let i=0; i<20; i++) {
-        const t = i/19;
-        pts.push({ x: dW*0.05 + dW*0.9*t, y: dH*0.5 + Math.sin(t*5)*dH*0.2 });
+      for(let i=0; i<25; i++) {
+        const t = i/24;
+        pts.push({ x: dW*0.05 + dW*0.9*t, y: dH*0.5 + Math.sin(t*7)*dH*0.2 });
       }
-
-      const sigma = (12 / eps) * devicePixelRatio;
-
-      // True Path (Clean Line)
-      dctx.strokeStyle = 'rgba(255,255,255,0.1)';
-      dctx.setLineDash([4, 4]);
-      dctx.beginPath();
-      dctx.moveTo(pts[0].x, pts[0].y);
-      pts.forEach(p => dctx.lineTo(p.x, p.y));
-      dctx.stroke();
-
-      // DP Path (Accented)
+      // Noisy Path
       dctx.strokeStyle = '#82e6e6';
-      dctx.setLineDash([]);
-      dctx.lineWidth = 1.5 * devicePixelRatio;
+      dctx.lineWidth = 2 * devicePixelRatio;
       dctx.beginPath();
       pts.forEach((p, i) => {
         const nx = p.x + (Math.random()-0.5)*sigma*2;
@@ -277,6 +291,20 @@
     epsEl.addEventListener('input', drawDemo);
     window.addEventListener('resize', drawDemo);
     drawDemo();
+
+    // DOTS SYNC
+    const dots = document.querySelectorAll('.dot');
+    const sections = document.querySelectorAll('.page');
+    window.addEventListener('scroll', () => {
+      let current = "";
+      sections.forEach(section => {
+        if (pageYOffset >= section.offsetTop - 100) current = section.getAttribute('id');
+      });
+      dots.forEach(dot => {
+        dot.classList.toggle('active', dot.dataset.target === "#" + current);
+      });
+    });
+    dots.forEach(dot => dot.onclick = () => document.querySelector(dot.dataset.target).scrollIntoView());
   </script>
 </body>
 </html>
