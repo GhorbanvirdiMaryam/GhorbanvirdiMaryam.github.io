@@ -3,256 +3,336 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maryam Ghorbanvirdi — PhD Researcher</title>
+  <title>Maryam Ghorbanvirdi — Privacy & Security</title>
+  <meta name="description" content="PhD researcher in Privacy & Security for Autonomous Systems. Differential Privacy." />
   <style>
-    :root {
+    :root{
       --bg: #0b0f14;
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.5);
-      --accent: #82e6e6;
-      --line: rgba(255, 255, 255, 0.08);
-      --glass: rgba(255, 255, 255, 0.02);
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --accent: rgba(130, 230, 230, .95);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --r: 18px;
     }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; margin: 0; padding: 0; background: var(--bg); }
-
-    body {
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6;
-      overflow-y: auto;
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(130,230,230,.12), transparent 55%),
+                  radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,.12), transparent 55%),
+                  var(--bg);
+      overflow-x:hidden;
     }
 
-    /* THE BACKGROUND (Your original moves) */
+    /* Subtle animated background */
     #bg {
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: 0.8;
+      opacity: .8;
       pointer-events: none;
-      background: 
-        radial-gradient(1200px 800px at 20% 10%, rgba(130,230,230,0.08), transparent 55%),
-        radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,0.08), transparent 55%);
+      filter: blur(.2px);
     }
 
-    /* SECTION LAYOUT */
-    .page {
-      min-height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-    }
-
-    .container {
-      width: min(900px, 100%);
+    .wrap{
+      max-width: 980px;
       margin: 0 auto;
+      padding: 48px 18px 64px;
     }
 
-    /* TOP NAV */
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 60px;
+    .top{
+      display:flex;
+      gap:22px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 22px;
     }
-    .pills { display: flex; gap: 20px; }
-    .pills a {
-      text-decoration: none;
+
+    .hero{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .avatar{
+      width:74px;height:74px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+      background: rgba(255,255,255,.05);
+    }
+
+    h1{
+      font-size: 22px;
+      margin:0 0 4px;
+      letter-spacing:.2px;
+      font-weight: 680;
+    }
+    .subtitle{
+      margin:0;
       color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    .pills a:hover { color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 60px;
-      align-items: center;
-    }
-    h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin: 0 0 20px; }
-    .subtitle { font-size: 1.1rem; color: var(--muted); max-width: 440px; }
-    .photo { 
-      width: 100%; height: 400px; border-radius: 2px; object-fit: cover; 
-      filter: grayscale(1); opacity: 0.8; border: 1px solid var(--line);
+      font-size: 14.5px;
+      line-height: 1.45;
+      max-width: 56ch;
     }
 
-    /* DP DEMO */
-    .section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 30px; }
-    .demo-panel {
-      padding: 30px;
+    .pillrow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
       border: 1px solid var(--line);
-      background: var(--glass);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 13px;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+      backdrop-filter: blur(8px);
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr;}
+      .pillrow{justify-content:flex-start}
+    }
+
+    .card{
+      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding: 16px;
       backdrop-filter: blur(10px);
     }
-    .controls { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; font-family: monospace; font-size: 0.8rem; }
-    input[type=range] { flex-grow: 1; accent-color: var(--accent); }
-    canvas#demo { width: 100%; height: 200px; border-top: 1px solid var(--line); padding-top: 20px; }
 
-    /* PROJECTS */
-    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--line); border: 1px solid var(--line); }
-    .project-card {
-      padding: 40px;
-      background: var(--bg);
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.3s;
-    }
-    .project-card:hover { background: var(--glass); }
-    .project-card h3 { margin: 0 0 10px; font-size: 1.1rem; }
-    .project-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
-
-    /* NAVIGATION DOTS */
-    .dots {
-      position: fixed; right: 30px; top: 50%; transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 15px;
-    }
-    .dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--line);
-      cursor: pointer; transition: 0.3s;
-    }
-    .dot.active { background: var(--accent); transform: scale(1.5); }
-
-    /* SCROLL ICON */
-    .scroll-btn {
-      display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
-      color: var(--accent); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.1em;
+    .card h2{
+      font-size: 14px;
+      margin:0 0 10px;
+      font-weight: 680;
+      letter-spacing:.18px;
+      color: rgba(255,255,255,.9);
     }
 
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-      .photo { height: 300px; order: -1; }
-      .project-grid { grid-template-columns: 1fr; }
+    .muted{color: var(--muted); font-size: 13.5px; line-height: 1.55;}
+
+    .links{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .linkcard{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding: 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      text-decoration:none;
+      color: var(--text);
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+      min-height: 76px;
+    }
+    .linkcard:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.18);
+    }
+    .linkcard .t{font-weight:650; font-size: 13.5px;}
+    .linkcard .d{color: var(--muted); font-size: 12.8px; line-height: 1.35;}
+
+    .demoRow{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .slider{
+      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    input[type="range"]{width: 180px;}
+    .eps{
+      font-weight: 650;
+      color: var(--accent);
+    }
+
+    .demoCanvas{
+      width:100%;
+      height:180px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.25);
+      display:block;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.45);
+      font-size: 12.5px;
+      text-align:center;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      #bg{display:none;}
     }
   </style>
 </head>
 <body>
-
   <canvas id="bg"></canvas>
 
-  <div class="dots">
-    <div class="dot active" data-target="#p1"></div>
-    <div class="dot" data-target="#p2"></div>
-    <div class="dot" data-target="#p3"></div>
-  </div>
-
-  <section class="page" id="p1">
-    <div class="container">
-      <div class="topbar">
-        <span style="font-weight: 700; font-size: 0.9rem;">MG.</span>
-        <nav class="pills">
-          <a href="https://github.com/GhorbanvirdiMaryam">GitHub</a>
-          <a href="#">Scholar</a>
-          <a href="#">CV</a>
-          <a href="mailto:email@address.com">Email</a>
-        </nav>
-      </div>
+  <div class="wrap">
+    <div class="top">
       <div class="hero">
+        <img class="avatar" src="assets/me.jpg" alt="Maryam photo" />
         <div>
           <h1>Maryam Ghorbanvirdi</h1>
-          <p class="subtitle">PhD Researcher specializing in Privacy-Preserving methods for Autonomous Systems and Cyber-Physical frameworks.</p>
-          <a href="#p2" class="scroll-btn">VIEW RESEARCH <span>↓</span></a>
+          <p class="subtitle">
+            PhD student — Privacy & Security in Autonomous Systems • working on Differential Privacy (DP)
+          </p>
         </div>
-        <img class="photo" src="IMG_4291.jpeg" alt="Profile" />
+      </div>
+
+      <div class="pillrow">
+        <!-- Replace these links -->
+        <a class="pill" href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="pill" href="#" target="_blank" rel="noreferrer">Google Scholar</a>
+        <a class="pill" href="#" target="_blank" rel="noreferrer">CV</a>
+        <a class="pill" href="mailto:your@email.com">Email</a>
       </div>
     </div>
-  </section>
 
-  <section class="page" id="p2">
-    <div class="container">
-      <h2 class="section-title">01. Interactive Concept</h2>
-      <div class="demo-panel">
-        <div class="controls">
-          <span>privacy_epsilon</span>
-          <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
-          <span style="color:var(--accent)" id="epsVal">1.2</span>
-        </div>
-        <canvas id="demo"></canvas>
-        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 20px;">
-          Differential Privacy (DP) introduces controlled noise to protect individual data points while maintaining aggregate utility.
+    <div class="grid">
+      <section class="card">
+        <h2>Featured project pages</h2>
+        <p class="muted">
+          Specialized pages (each hosted separately) — linked here for quick access.
         </p>
-      </div>
-    </div>
-  </section>
 
-  <section class="page" id="p3">
-    <div class="container">
-      <h2 class="section-title">02. Selected Work</h2>
-      <div class="project-grid">
-        <a href="#" class="project-card">
-          <h3>Timing Inference</h3>
-          <p>Offset inference and jitter modeling in client-server systems.</p>
-        </a>
-        <a href="#" class="project-card">
-          <h3>SoK: DP in CPS</h3>
-          <p>A systematic framework for safety and utility scoring.</p>
-        </a>
-        <a href="#" class="project-card">
-          <h3>Talks & Presentations</h3>
-          <p>Slides and materials from recent conference posters.</p>
-        </a>
-        <a href="#" class="project-card">
-          <h3>Open Source</h3>
-          <p>Reproducibility scripts and experimental datasets.</p>
-        </a>
-      </div>
-      <footer style="margin-top: 40px; font-size: 0.75rem; color: var(--muted); display: flex; justify-content: space-between;">
-        <span>© <span id="y"></span> — MARYAM GHORBANVIRDI</span>
-        <a href="#p1" style="color: inherit; text-decoration: none;">BACK TO TOP ↑</a>
-      </footer>
+        <div class="links">
+          <!-- Replace href + text with your real pages -->
+          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+            <div class="t">Timing Inference (Client–Server)</div>
+            <div class="d">Offset inference, jitter modeling, attacker analysis</div>
+          </a>
+          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+            <div class="t">SoK: DP in CPS / Autonomous Systems</div>
+            <div class="d">Taxonomy + Privacy/Utility/Safety scoring framework</div>
+          </a>
+          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+            <div class="t">Talks & Posters</div>
+            <div class="d">Slides, demos, and short explainers</div>
+          </a>
+          <a class="linkcard" href="#" target="_blank" rel="noreferrer">
+            <div class="t">Code & Reproducibility</div>
+            <div class="d">Datasets, scripts, and experiment notes</div>
+          </a>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h2>DP micro-demo (privacy in motion)</h2>
+        <div class="demoRow">
+          <div class="muted">Lower ε ⇒ stronger privacy ⇒ more noise</div>
+          <div class="slider">
+            <span class="muted">ε</span>
+            <input id="eps" type="range" min="0.2" max="5" step="0.1" value="1.2" />
+            <span class="eps" id="epsVal">1.2</span>
+          </div>
+        </div>
+        <canvas id="demo" class="demoCanvas"></canvas>
+        <p class="muted" style="margin:10px 0 0;">
+          A tiny visual intuition: a vehicle path with DP-style perturbation for shared telemetry.
+        </p>
+      </aside>
     </div>
-  </section>
+
+    <footer>
+      © <span id="y"></span> · Built with GitHub Pages
+    </footer>
+  </div>
 
   <script>
+    // Footer year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // BACKGROUND LOGIC (Your original movement + lines)
+    // --- Subtle background: moving "privacy field" particles ---
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
-    let W, H, particles = [];
-
+    let W=0,H=0,particles=[];
     function resizeBg(){
-      W = bg.width = window.innerWidth * devicePixelRatio;
+      W = bg.width  = window.innerWidth * devicePixelRatio;
       H = bg.height = window.innerHeight * devicePixelRatio;
-      const n = Math.floor((window.innerWidth * window.innerHeight) / 18000);
-      particles = Array.from({length: Math.max(45, n)}, () => ({
+      const n = Math.floor((window.innerWidth*window.innerHeight)/18000);
+      particles = Array.from({length: Math.max(40, n)}, () => ({
         x: Math.random()*W,
         y: Math.random()*H,
         vx:(Math.random()-.5)*0.25*devicePixelRatio,
         vy:(Math.random()-.5)*0.25*devicePixelRatio,
-        r: (0.8 + Math.random()*1.5)*devicePixelRatio
+        r: (0.8 + Math.random()*1.6)*devicePixelRatio
       }));
     }
-    window.addEventListener('resize', resizeBg);
     resizeBg();
+    window.addEventListener('resize', resizeBg);
 
     function bgLoop(){
       bctx.clearRect(0,0,W,H);
-      particles.forEach(p => {
+      // Very subtle lines + dots
+      for(const p of particles){
         p.x += p.vx; p.y += p.vy;
         if(p.x<0) p.x=W; if(p.x>W) p.x=0;
         if(p.y<0) p.y=H; if(p.y>H) p.y=0;
+
+        // dot
         bctx.beginPath();
         bctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        bctx.fillStyle = 'rgba(130,230,230,0.15)';
+        bctx.fillStyle = 'rgba(130,230,230,0.12)';
         bctx.fill();
-      });
-      const maxD = (140*devicePixelRatio)**2;
-      for (let i=0; i<particles.length; i++){
-        for (let j=i+1; j<particles.length; j++){
-          const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y;
+
+        // link to nearby
+        for(const q of particles){
+          const dx=p.x-q.x, dy=p.y-q.y;
           const d2=dx*dx+dy*dy;
-          if(d2 < maxD){
-            bctx.strokeStyle = `rgba(170,140,255,${0.08 * (1 - d2/maxD)})`;
-            bctx.beginPath(); bctx.moveTo(particles[i].x, particles[i].y);
-            bctx.lineTo(particles[j].x, particles[j].y); bctx.stroke();
+          if(d2>0 && d2 < (120*devicePixelRatio)*(120*devicePixelRatio)){
+            const a = 0.08 * (1 - d2/((120*devicePixelRatio)*(120*devicePixelRatio)));
+            bctx.strokeStyle = `rgba(170,140,255,${a})`;
+            bctx.lineWidth = 1*devicePixelRatio;
+            bctx.beginPath();
+            bctx.moveTo(p.x,p.y);
+            bctx.lineTo(q.x,q.y);
+            bctx.stroke();
           }
         }
       }
@@ -260,51 +340,94 @@
     }
     bgLoop();
 
-    // INTERACTIVE DP DEMO
+    // --- Micro-demo: path + DP-ish noise controlled by epsilon slider ---
     const demo = document.getElementById('demo');
     const dctx = demo.getContext('2d');
+    let dW=0,dH=0;
+    function resizeDemo(){
+      const rect = demo.getBoundingClientRect();
+      dW = demo.width  = rect.width * devicePixelRatio;
+      dH = demo.height = rect.height * devicePixelRatio;
+    }
+    resizeDemo();
+    window.addEventListener('resize', resizeDemo);
+
+    // Simple Gaussian-ish noise (Box-Muller)
+    function randn(){
+      let u=0, v=0;
+      while(u===0) u=Math.random();
+      while(v===0) v=Math.random();
+      return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+    }
+
     const epsEl = document.getElementById('eps');
     const epsValEl = document.getElementById('epsVal');
 
-    function drawDemo() {
-      const dW = demo.width = demo.clientWidth * devicePixelRatio;
-      const dH = demo.height = demo.clientHeight * devicePixelRatio;
+    function drawDemo(eps){
+      dctx.clearRect(0,0,dW,dH);
+
+      // Frame
+      dctx.strokeStyle = 'rgba(255,255,255,.10)';
+      dctx.lineWidth = 1*devicePixelRatio;
+      dctx.strokeRect(10*devicePixelRatio, 10*devicePixelRatio, dW-20*devicePixelRatio, dH-20*devicePixelRatio);
+
+      const pad = 26*devicePixelRatio;
+      const x0 = pad, x1 = dW - pad;
+      const yMid = dH*0.58;
+
+      // Base path: a gentle curve
+      const pts = [];
+      const N = 42;
+      for(let i=0;i<N;i++){
+        const t = i/(N-1);
+        const x = x0 + (x1-x0)*t;
+        const y = yMid + Math.sin(t*Math.PI*1.2)*(-0.22*dH) + Math.sin(t*Math.PI*3.0)*(-0.05*dH);
+        pts.push({x,y});
+      }
+
+      // Noise scale ~ 1/eps (clamped)
+      const sigma = Math.min(22, Math.max(2.5, 18/eps)) * devicePixelRatio;
+
+      // Draw true path
+      dctx.lineWidth = 2*devicePixelRatio;
+      dctx.strokeStyle = 'rgba(255,255,255,.75)';
+      dctx.beginPath();
+      dctx.moveTo(pts[0].x, pts[0].y);
+      for(const p of pts) dctx.lineTo(p.x,p.y);
+      dctx.stroke();
+
+      // Draw noisy observations
+      dctx.lineWidth = 2*devicePixelRatio;
+      dctx.strokeStyle = 'rgba(130,230,230,.85)';
+      dctx.beginPath();
+      for(let i=0;i<pts.length;i++){
+        const p = pts[i];
+        const nx = p.x + randn()*sigma;
+        const ny = p.y + randn()*sigma;
+        if(i===0) dctx.moveTo(nx,ny);
+        else dctx.lineTo(nx,ny);
+      }
+      dctx.stroke();
+
+      // Legend
+      dctx.font = `${12*devicePixelRatio}px ui-sans-serif, system-ui`;
+      dctx.fillStyle = 'rgba(255,255,255,.70)';
+      dctx.fillText('true path', pad, 24*devicePixelRatio);
+      dctx.fillStyle = 'rgba(130,230,230,.95)';
+      dctx.fillText('noisy shared telemetry', pad+90*devicePixelRatio, 24*devicePixelRatio);
+
+      // epsilon label
+      dctx.fillStyle = 'rgba(255,255,255,.55)';
+      dctx.fillText(`noise ~ 1/ε`, dW - 110*devicePixelRatio, 24*devicePixelRatio);
+    }
+
+    function update(){
       const eps = parseFloat(epsEl.value);
       epsValEl.textContent = eps.toFixed(1);
-      const sigma = (14 / eps) * devicePixelRatio;
-      const pts = [];
-      for(let i=0; i<25; i++) {
-        const t = i/24;
-        pts.push({ x: dW*0.05 + dW*0.9*t, y: dH*0.5 + Math.sin(t*7)*dH*0.2 });
-      }
-      // Noisy Path
-      dctx.strokeStyle = '#82e6e6';
-      dctx.lineWidth = 2 * devicePixelRatio;
-      dctx.beginPath();
-      pts.forEach((p, i) => {
-        const nx = p.x + (Math.random()-0.5)*sigma*2;
-        const ny = p.y + (Math.random()-0.5)*sigma*2;
-        if(i===0) dctx.moveTo(nx, ny); else dctx.lineTo(nx, ny);
-      });
-      dctx.stroke();
+      drawDemo(eps);
     }
-    epsEl.addEventListener('input', drawDemo);
-    window.addEventListener('resize', drawDemo);
-    drawDemo();
-
-    // DOTS SYNC
-    const dots = document.querySelectorAll('.dot');
-    const sections = document.querySelectorAll('.page');
-    window.addEventListener('scroll', () => {
-      let current = "";
-      sections.forEach(section => {
-        if (pageYOffset >= section.offsetTop - 100) current = section.getAttribute('id');
-      });
-      dots.forEach(dot => {
-        dot.classList.toggle('active', dot.dataset.target === "#" + current);
-      });
-    });
-    dots.forEach(dot => dot.onclick = () => document.querySelector(dot.dataset.target).scrollIntoView());
+    epsEl.addEventListener('input', update);
+    update();
   </script>
 </body>
 </html>
