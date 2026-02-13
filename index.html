@@ -28,7 +28,6 @@
         radial-gradient(1000px 700px at 80% 20%, rgba(170,140,255,.11), transparent 55%),
         var(--bg);
 
-      /* “ورق خوردن” */
       overflow-y:auto;
       scroll-snap-type: y mandatory;
       scroll-behavior:smooth;
@@ -39,18 +38,19 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: .9;           /* کمتر که مینیمال‌تر شه */
+      opacity: .9;              /* پررنگ‌تر */
       pointer-events: none;
       filter: blur(.2px);
     }
 
-    /* page layout */
+    /* page layout: ✅ from TOP (no empty center space) */
     .page{
       min-height: 100vh;
       scroll-snap-align: start;
-      padding: 42px 18px;
+      padding: 56px 18px 64px;
+
       display:flex;
-      align-items:center;
+      align-items:flex-start;   /* ✅ مهم */
       justify-content:center;
     }
     .container{
@@ -92,12 +92,12 @@
       border-color: rgba(255,255,255,.22);
     }
 
-    /* HERO (page 1): truly minimal */
+    /* HERO (page 1) */
     .hero{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 26px;
-      align-items:center;
+      align-items:start;
       margin-top: 10px;
     }
     .photo{
@@ -158,7 +158,7 @@
     }
     .down:hover .chev{ transform: translateY(1px); }
 
-    /* page titles minimal */
+    /* section titles */
     .sectionTitle{
       font-size: 14px;
       font-weight: 850;
@@ -168,7 +168,7 @@
     }
     .muted{ color: var(--muted); font-size: 13.5px; line-height: 1.6; margin: 0; }
 
-    /* minimal panel (very light glass) */
+    /* minimal panel */
     .panel{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.035);
@@ -183,7 +183,7 @@
       display:grid;
       grid-template-columns: 1fr;
       gap: 14px;
-      max-width: 720px; /* مینیمال و جمع‌وجور */
+      max-width: 720px;
     }
     .demoRow{
       display:flex;
@@ -207,53 +207,47 @@
 
     .demoCanvas{
       width:100%;
-      height: 150px;           /* همون کوچیک */
+      height: 150px;
       border-radius: 14px;
       border:1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.22);
       display:block;
     }
 
-    /* Page 3: projects row */
-    .projectsWrap{
-      width: min(1040px, 100%);
+    /* ✅ Projects grid (no horizontal scroll) */
+    .projectsGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
-    .row{
-      display:flex;
-      gap:12px;
-      overflow-x:auto;
-      padding-bottom: 8px;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-      margin-top: 12px;
-    }
-    .row::-webkit-scrollbar{ height: 8px; }
-    .row::-webkit-scrollbar-thumb{
-      background: rgba(255,255,255,.12);
-      border-radius: 999px;
-    }
-    .card{
-      flex: 0 0 280px;
-      scroll-snap-align: start;
+
+    /* ✅ Taller project cards */
+    .projectCard{
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.035);
       border-radius: 16px;
-      padding: 14px;
+      padding: 16px;
       text-decoration:none;
       color: var(--text);
       backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+
+      min-height: 132px;        /* بلندتر */
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
       transition: transform .15s ease, background .15s ease, border .15s ease;
-      min-height: 96px;
     }
-    .card:hover{
+    .projectCard:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.055);
       border-color: rgba(255,255,255,.18);
     }
-    .card .t{ font-weight: 900; font-size: 13.5px; margin-bottom: 6px; }
-    .card .d{ color: var(--muted); font-size: 12.8px; line-height: 1.35; }
+    .projectCard .t{ font-weight: 900; font-size: 14px; margin-bottom: 8px; }
+    .projectCard .d{ color: var(--muted); font-size: 13px; line-height: 1.45; }
 
-    /* dots nav (optional) */
+    /* dots nav */
     .dots{
       position: fixed;
       right: 16px;
@@ -282,7 +276,7 @@
     @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; }
       .photo{ height: 380px; }
-      .dots{ display:none; } /* موبایل ساده‌تر */
+      .dots{ display:none; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -302,13 +296,12 @@
     <button class="dot" data-target="#p3" aria-label="Go to Projects"></button>
   </div>
 
-  <!-- PAGE 1: About (minimal) -->
+  <!-- PAGE 1 -->
   <section class="page" id="p1">
     <div class="container">
       <div class="topbar">
         <div></div>
         <nav class="pills">
-          <!-- لینک‌ها را اینجا عوض کن -->
           <a class="pill" href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer">GitHub</a>
           <a class="pill" href="#" target="_blank" rel="noreferrer">Google Scholar</a>
           <a class="pill" href="#" target="_blank" rel="noreferrer">CV</a>
@@ -317,8 +310,7 @@
       </div>
 
       <div class="hero">
-        <!-- عکس: assets/profile.jpg -->
-        <img class="photo" src="IMG_4291.jpeg" alt="Profile photo" />
+        <img class="photo" src="assets/profile.jpg" alt="Profile photo" />
 
         <div>
           <h1>Maryam Ghorbanvirdi</h1>
@@ -340,7 +332,7 @@
     </div>
   </section>
 
-  <!-- PAGE 2: Demo (compact) -->
+  <!-- PAGE 2 -->
   <section class="page" id="p2">
     <div class="container">
       <div class="demoGrid">
@@ -373,36 +365,36 @@
     </div>
   </section>
 
-  <!-- PAGE 3: Projects -->
+  <!-- PAGE 3 -->
   <section class="page" id="p3">
-    <div class="projectsWrap container">
+    <div class="container">
       <h2 class="sectionTitle">Featured project pages</h2>
       <p class="muted">Minimal links to your deeper pages.</p>
 
-      <div class="row">
-        <!-- لینک‌ها را اینجا بذار -->
-        <a class="card" href="#" target="_blank" rel="noreferrer">
+      <div class="projectsGrid">
+        <a class="projectCard" href="#" target="_blank" rel="noreferrer">
           <div class="t">Timing Inference (Client–Server)</div>
           <div class="d">Offset inference, jitter modeling, attacker analysis</div>
         </a>
 
-        <a class="card" href="#" target="_blank" rel="noreferrer">
+        <a class="projectCard" href="#" target="_blank" rel="noreferrer">
           <div class="t">SoK: DP in CPS / Autonomous Systems</div>
           <div class="d">Taxonomy + Privacy/Utility/Safety scoring framework</div>
         </a>
 
-        <a class="card" href="#" target="_blank" rel="noreferrer">
+        <a class="projectCard" href="#" target="_blank" rel="noreferrer">
           <div class="t">Talks & Posters</div>
           <div class="d">Slides, demos, and short explainers</div>
         </a>
 
-        <a class="card" href="#" target="_blank" rel="noreferrer">
+        <a class="projectCard" href="#" target="_blank" rel="noreferrer">
           <div class="t">Code & Reproducibility</div>
           <div class="d">Datasets, scripts, and experiment notes</div>
         </a>
       </div>
 
-      <p class="muted" style="margin-top:14px;">© <span id="y"></span> · Built with GitHub Pages</p>
+      <p class="muted" style="margin-top:16px;">© <span id="y"></span> · Built with GitHub Pages</p>
+
       <a class="down" href="#p1" style="margin-top:12px;">
         <span class="chev">↑</span>
         <span>Back to top</span>
@@ -433,20 +425,21 @@
     }, {threshold: 0.6});
     pages.forEach(p => obs.observe(p));
 
-    // background particles (subtle)
+    // --- Background particles + lines (privacy vibe) ---
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let W=0,H=0,particles=[];
+
     function resizeBg(){
       W = bg.width  = window.innerWidth * devicePixelRatio;
       H = bg.height = window.innerHeight * devicePixelRatio;
-      const n = Math.floor((window.innerWidth*window.innerHeight)/22000);
-      particles = Array.from({length: Math.max(32, n)}, () => ({
+      const n = Math.floor((window.innerWidth*window.innerHeight)/18000);
+      particles = Array.from({length: Math.max(44, n)}, () => ({
         x: Math.random()*W,
         y: Math.random()*H,
-        vx:(Math.random()-.5)*0.22*devicePixelRatio,
-        vy:(Math.random()-.5)*0.22*devicePixelRatio,
-        r: (0.8 + Math.random()*1.5)*devicePixelRatio
+        vx:(Math.random()-.5)*0.25*devicePixelRatio,
+        vy:(Math.random()-.5)*0.25*devicePixelRatio,
+        r: (0.8 + Math.random()*1.6)*devicePixelRatio
       }));
     }
     resizeBg();
@@ -454,6 +447,8 @@
 
     function bgLoop(){
       bctx.clearRect(0,0,W,H);
+
+      // dots
       for(const p of particles){
         p.x += p.vx; p.y += p.vy;
         if(p.x<0) p.x=W; if(p.x>W) p.x=0;
@@ -464,26 +459,32 @@
         bctx.fillStyle = 'rgba(130,230,230,0.10)';
         bctx.fill();
       }
+
+      // lines
+      const maxD = (140*devicePixelRatio)*(140*devicePixelRatio);
+      for (let i=0;i<particles.length;i++){
+        const p = particles[i];
+        for (let j=i+1;j<particles.length;j++){
+          const q = particles[j];
+          const dx=p.x-q.x, dy=p.y-q.y;
+          const d2=dx*dx+dy*dy;
+          if(d2 < maxD){
+            const a = 0.07 * (1 - d2/maxD);
+            bctx.strokeStyle = `rgba(170,140,255,${a})`;
+            bctx.lineWidth = 1*devicePixelRatio;
+            bctx.beginPath();
+            bctx.moveTo(p.x,p.y);
+            bctx.lineTo(q.x,q.y);
+            bctx.stroke();
+          }
+        }
+      }
+
       requestAnimationFrame(bgLoop);
     }
     bgLoop();
-    for(const q of particles){
-  const dx=p.x-q.x, dy=p.y-q.y;
-  const d2=dx*dx+dy*dy;
-  const maxD = (140*devicePixelRatio)*(140*devicePixelRatio);
-  if(d2>0 && d2 < maxD){
-    const a = 0.07 * (1 - d2/maxD);
-    bctx.strokeStyle = `rgba(170,140,255,${a})`;
-    bctx.lineWidth = 1*devicePixelRatio;
-    bctx.beginPath();
-    bctx.moveTo(p.x,p.y);
-    bctx.lineTo(q.x,q.y);
-    bctx.stroke();
-  }
-}
 
-
-    // micro-demo
+    // --- Micro-demo ---
     const demo = document.getElementById('demo');
     const dctx = demo.getContext('2d');
     let dW=0,dH=0;
