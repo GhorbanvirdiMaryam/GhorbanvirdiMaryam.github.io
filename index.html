@@ -39,7 +39,7 @@
       position: fixed;
       inset: 0;
       z-index: -1;
-      opacity: .55;           /* کمتر که مینیمال‌تر شه */
+      opacity: .9;           /* کمتر که مینیمال‌تر شه */
       pointer-events: none;
       filter: blur(.2px);
     }
@@ -467,6 +467,21 @@
       requestAnimationFrame(bgLoop);
     }
     bgLoop();
+    for(const q of particles){
+  const dx=p.x-q.x, dy=p.y-q.y;
+  const d2=dx*dx+dy*dy;
+  const maxD = (140*devicePixelRatio)*(140*devicePixelRatio);
+  if(d2>0 && d2 < maxD){
+    const a = 0.07 * (1 - d2/maxD);
+    bctx.strokeStyle = `rgba(170,140,255,${a})`;
+    bctx.lineWidth = 1*devicePixelRatio;
+    bctx.beginPath();
+    bctx.moveTo(p.x,p.y);
+    bctx.lineTo(q.x,q.y);
+    bctx.stroke();
+  }
+}
+
 
     // micro-demo
     const demo = document.getElementById('demo');
