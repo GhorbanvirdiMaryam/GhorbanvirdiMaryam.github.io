@@ -601,7 +601,6 @@
     <div class="section-wrapper">
       <div class="section-left">
         <div class="section-label">About Me Page</div>
-        <p class="section-description">Personalize your own About page.</p>
       </div>
       <div class="section-card">
         <h2 class="card-title">About Me</h2>
@@ -612,9 +611,8 @@
             </div>
           </div>
           <div class="card-text">
-            <div class="quote">"The work you do while you procrastinate is probably the work you should be doing for the rest of your life." — Maryam</div>
             <p><strong>Hi! I'm Maryam.</strong></p>
-            <p>I'm a PhD student researching privacy and security in autonomous systems, with a focus on differential privacy. My work explores how to protect sensitive information in cyber-physical systems while maintaining utility and safety.</p>
+            <p>I'm a PhD student researching privacy and security in autonomous systems. Currently I'm focusing on differential privacy. My work explores how to protect sensitive information in cyber-physical systems while maintaining privacy.</p>
             <p>I'm passionate about building privacy-preserving technologies that don't compromise system performance.</p>
             <div class="social-links">
               <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">🔗 GitHub</a>
@@ -630,7 +628,6 @@
     <div class="section-wrapper">
       <div class="section-left">
         <div class="section-label">Research & Projects</div>
-        <p class="section-description">Explore my work in privacy and security.</p>
       </div>
       <div class="section-card">
         <h2 class="card-title">Projects</h2>
@@ -642,7 +639,6 @@
     <div class="section-wrapper">
       <div class="section-left">
         <div class="section-label">Interactive Demo</div>
-        <p class="section-description">Explore privacy-utility trade-off.</p>
       </div>
       <div class="section-card">
         <h2 class="card-title">Differential Privacy</h2>
@@ -668,10 +664,8 @@
     <div class="section-wrapper">
       <div class="section-left">
         <div class="section-label">Contact Page</div>
-        <p class="section-description">Makes it easy for visitors to reach out.</p>
       </div>
       <div class="section-card">
-        <div class="contact-icon">📬</div>
         <h2 class="card-title">Contact Me</h2>
         <div class="card-text" style="margin-bottom: 1.5rem;">
           <p>Hello! Thanks so much for stopping by. If you have any questions or just want to say hi, please feel free to send an email to maryam@example.com or fill out the following form, and I'll get back to you as soon as I can.</p>
@@ -697,7 +691,7 @@
 
   <!-- Footer -->
   <footer>
-    <p>© <span id="year"></span> Maryam Ghorbanvirdi • Privacy & Security Research</p>
+    <p>© <span id="year"></span> Maryam Ghorbanvirdi • Privacy & Security Researcher</p>
   </footer>
 
   <!-- Project Modal -->
@@ -716,43 +710,37 @@
     const projects = [
       {
         title: 'Timing Inference',
-        subtitle: 'Client–Server attacks & jitter modeling',
-        icon: '⏱️',
+        subtitle: 'Client–Server Application',
         slug: 'timing-inference',
         content: `<h2>Timing Inference in Client-Server Systems</h2><h3>Overview</h3><p>Timing-based side-channel attacks reveal sensitive information through network delays and response patterns.</p><h3>Key Topics</h3><ul><li>Offset inference between client and server</li><li>Jitter modeling for privacy protection</li><li>Attacker capability analysis</li></ul>`
       },
       {
         title: 'Realtime Systems',
         subtitle: 'Privacy & temporal constraints in CPS',
-        icon: '⚡',
         slug: 'realtime-systems',
         content: `<h2>Privacy in Real-Time Systems</h2><h3>Challenge</h3><p>Real-time systems have strict deadlines that conflict with privacy mechanisms.</p><h3>Solutions</h3><ul><li>Adaptive privacy budgets</li><li>Deadline-aware noise injection</li><li>Privacy-aware scheduling</li></ul>`
       },
       {
         title: 'DP Foundations',
         subtitle: 'Technical theory & mechanisms',
-        icon: '📐',
         slug: 'dp-notes',
         content: `<h2>Differential Privacy Foundations</h2><h3>Definition</h3><p>Formal guarantee: presence/absence of any individual's data has negligible impact on output.</p><h3>Core Mechanisms</h3><ul><li>Laplace mechanism</li><li>Gaussian mechanism</li><li>Exponential mechanism</li></ul>`
       },
       {
         title: 'Noise Types',
         subtitle: 'Laplace, Gaussian, exponential',
-        icon: '🔊',
         slug: 'noise-types',
         content: `<h2>Noise Types in Differential Privacy</h2><h3>Laplace Noise</h3><ul><li>Symmetric, heavy tails</li><li>Tight privacy guarantees</li></ul><h3>Gaussian Noise</h3><ul><li>Better for high-dimensional data</li><li>Smoother noise profile</li></ul>`
       },
       {
         title: 'SoK: DP in CPS',
         subtitle: 'Taxonomy & privacy-utility-safety framework',
-        icon: '🗺️',
         slug: 'sok-dp-cps',
         content: `<h2>Systematization: DP in Autonomous Systems</h2><h3>Taxonomy</h3><ul><li>Autonomous vehicles</li><li>Drone systems</li><li>Industrial IoT</li><li>Smart infrastructure</li></ul><h3>Evaluation Framework</h3><p>Privacy score, Utility score, Safety score</p>`
       },
       {
         title: 'How to Write SoK',
         subtitle: 'Methodology & best practices',
-        icon: '📝',
         slug: 'how-to-write-sok',
         content: `<h2>How to Write a Systematization of Knowledge</h2><h3>Structure</h3><ol><li>Novel organizational framework</li><li>Taxonomy development</li><li>Systematic analysis</li><li>Gap identification</li></ol><h3>Best Practices</h3><ul><li>Be comprehensive and systematic</li><li>Provide critical analysis</li><li>Identify limitations</li></ul>`
       }
