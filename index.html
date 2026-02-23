@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
   <title>Maryam Ghorbanvirdi — Privacy & Security</title>
-  <meta name="description" content="PhD researcher in Privacy & Security for Autonomous Systems. Differential Privacy." />
+  <meta name="description" content="PhD researcher in Privacy & Security for Autonomous Systems." />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,94 +24,167 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #1a1a1a;
-      background: #fafafa;
+      color: #2a2a2a;
+      background: #3a3f38;
       overflow-x: hidden;
       line-height: 1.6;
-    }
-
-    /* Subtle background with dark animations */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
-      pointer-events: none;
-      z-index: -2;
+      position: relative;
     }
 
     canvas#bg {
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: 0;
       opacity: 1;
       pointer-events: none;
     }
 
-    .container {
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Header */
+    header {
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (min-width: 768px) {
+      header h1 {
+        font-size: 3rem;
+      }
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #666666;
+      font-weight: 500;
+    }
+
+    /* Section Container - Asymmetric Layout */
+    .section-wrapper {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 0 1.5rem;
+      padding: 0 2rem;
+      margin-bottom: 10rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 1024px) {
+      .section-wrapper {
+        grid-template-columns: 150px 1fr;
+        gap: 3rem;
+        margin-bottom: 8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+        margin-bottom: 4rem;
+      }
+    }
+
+    .section-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .section-description {
+      font-size: 0.8rem;
+      color: #999999;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    .section-left {
+      padding-top: 1rem;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      padding: 3rem;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+      animation: slideIn 0.6s ease-out;
+    }
+
+    @media (max-width: 768px) {
+      .section-card {
+        padding: 2rem;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #2a2a2a;
+      margin-bottom: 2rem;
+      text-align: center;
     }
 
     @media (min-width: 768px) {
-      .container {
-        padding: 0 2rem;
+      .card-title {
+        font-size: 2.5rem;
       }
     }
 
-    @media (min-width: 1024px) {
-      .container {
-        padding: 0 3rem;
-      }
-    }
-
-    /* Hero Section */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      z-index: 0;
-    }
-
-    .hero-wrapper {
+    .card-content {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
       align-items: center;
-      width: 100%;
-      max-width: 1200px;
     }
 
-    @media (min-width: 768px) {
-      .hero-wrapper {
-        grid-template-columns: 1fr 1.1fr;
-        gap: 4rem;
+    @media (max-width: 768px) {
+      .card-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
     }
 
-    /* Portrait Image */
-    .hero-image {
-      position: relative;
-      order: 2;
-    }
-
-    @media (min-width: 768px) {
-      .hero-image {
-        order: 1;
-      }
+    .card-image {
+      text-align: center;
     }
 
     .portrait-container {
-      position: relative;
       aspect-ratio: 3/4;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .portrait-container img {
@@ -120,385 +193,198 @@
       object-fit: cover;
     }
 
-    /* Hero Content */
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      order: 1;
-    }
-
-    @media (min-width: 768px) {
-      .hero-content {
-        order: 2;
-      }
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.02em;
-      color: #1a1a1a;
-      line-height: 1.2;
-    }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 3.5rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      h1 {
-        font-size: 4rem;
-      }
-    }
-
-    .subtitle {
-      font-size: 1.0625rem;
-      color: #666666;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-    }
-
-    @media (min-width: 768px) {
-      .subtitle {
-        font-size: 1.125rem;
-      }
-    }
-
-    .intro-text {
-      font-size: 1rem;
-      color: #444444;
-      margin-bottom: 2rem;
+    .card-text {
+      font-size: 0.95rem;
+      color: #555555;
       line-height: 1.8;
-      max-width: 500px;
     }
 
-    @media (min-width: 768px) {
-      .intro-text {
-        font-size: 1.0625rem;
-      }
+    .card-text p {
+      margin-bottom: 1rem;
     }
 
-    .intro-text strong {
-      color: #1a1a1a;
+    .card-text strong {
+      color: #2a2a2a;
       font-weight: 600;
     }
 
+    .quote {
+      font-size: 0.9rem;
+      color: #999999;
+      font-style: italic;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+      border-left: 3px solid #d4d9c8;
+    }
+
+    /* Social Links */
     .social-links {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      margin-bottom: 2rem;
+      margin-top: 1.5rem;
     }
 
     .social-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 0.375rem;
-      background: transparent;
-      border: 1.5px solid #1a1a1a;
-      color: #1a1a1a;
+      background: #f0f0f0;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #2a2a2a;
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
     .social-btn:hover {
-      background: #1a1a1a;
-      color: #fafafa;
+      background: #2a2a2a;
+      color: #ffffff;
       transform: translateY(-2px);
     }
 
-    /* Projects Section */
-    .projects-section {
-      position: relative;
-      z-index: 0;
-      padding: 5rem 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .projects-section {
-        padding: 7rem 1rem;
-      }
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-      color: #1a1a1a;
-    }
-
-    @media (min-width: 768px) {
-      .section-title {
-        font-size: 3.5rem;
-      }
-    }
-
-    .section-description {
-      font-size: 1.0625rem;
-      color: #666666;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
+    /* Projects Grid */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      gap: 1.5rem;
     }
 
     @media (min-width: 768px) {
       .projects-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
       }
     }
 
-    @media (min-width: 1024px) {
-      .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .project-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: #ffffff;
-      padding: 2rem;
+    .project-item {
+      background: #f9f9f9;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
       cursor: pointer;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      text-align: center;
     }
 
-    .project-card:hover {
-      border-color: rgba(0, 0, 0, 0.15);
+    .project-item:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
     }
 
     .project-icon {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover .project-icon {
-      transform: scale(1.1) rotate(5deg);
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
     }
 
     .project-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 0.75rem;
-      transition: color 0.3s ease;
-    }
-
-    .project-card:hover .project-title {
-      color: #333333;
+      color: #2a2a2a;
+      margin-bottom: 0.5rem;
     }
 
     .project-description {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #666666;
       line-height: 1.6;
-      flex: 1;
     }
 
-    .project-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+    /* Contact Form */
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       margin-top: 1.5rem;
-      color: #1a1a1a;
+    }
+
+    @media (min-width: 768px) {
+      .contact-form {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      grid-column: 1 / -1;
+    }
+
+    .form-group.half {
+      grid-column: 1;
+    }
+
+    @media (min-width: 768px) {
+      .form-group.half:nth-child(2) {
+        grid-column: 2;
+      }
+    }
+
+    label {
+      display: block;
       font-size: 0.9rem;
       font-weight: 600;
-      opacity: 0;
+      color: #2a2a2a;
+      margin-bottom: 0.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #2a2a2a;
+      background: #f9f9f9;
       transition: all 0.3s ease;
     }
 
-    .project-card:hover .project-link {
-      opacity: 1;
-      transform: translateX(4px);
-    }
-
-    /* Demo Section */
-    .demo-section {
-      position: relative;
-      z-index: 0;
-      padding: 5rem 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .demo-section {
-        padding: 7rem 1rem;
-      }
-    }
-
-    .demo-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .demo-card {
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #2a2a2a;
       background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 0 3px rgba(42, 42, 42, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background: #2a2a2a;
+      color: #ffffff;
+      padding: 0.75rem 2rem;
+      border: none;
       border-radius: 0.5rem;
-      padding: 2.5rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    @media (min-width: 768px) {
-      .demo-card {
-        padding: 3rem;
-      }
-    }
-
-    .demo-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    @media (min-width: 768px) {
-      .demo-title {
-        font-size: 3rem;
-      }
-    }
-
-    .slider-container {
-      margin-bottom: 2rem;
-    }
-
-    .slider-label {
-      font-size: 0.95rem;
-      color: #666666;
-      margin-bottom: 1rem;
-      display: block;
-      font-weight: 500;
-    }
-
-    .slider-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.5rem;
-      border-radius: 0.375rem;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      background: #f9f9f9;
-    }
-
-    .slider-wrapper span {
-      font-size: 0.95rem;
-      color: #666666;
-      font-weight: 500;
-    }
-
-    input[type="range"] {
-      flex: 1;
-      height: 4px;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 9999px;
-      appearance: none;
-      cursor: pointer;
-      accent-color: #1a1a1a;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      appearance: none;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-      border: none;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: #1a1a1a;
-      cursor: pointer;
-      border: none;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    }
-
-    .eps-value {
-      font-weight: 700;
-      color: #1a1a1a;
-      min-width: 3rem;
-      text-align: right;
-      font-size: 1rem;
-    }
-
-    canvas#demo {
-      width: 100%;
-      height: 280px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 0.375rem;
-      background: #f9f9f9;
-      display: block;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      canvas#demo {
-        height: 350px;
-      }
-    }
-
-    .demo-description {
-      font-size: 0.95rem;
-      color: #666666;
-      line-height: 1.7;
-    }
-
-    .demo-description strong {
-      color: #1a1a1a;
       font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .submit-btn:hover {
+      background: #1a1a1a;
+      transform: translateY(-2px);
     }
 
     /* Footer */
     footer {
       position: relative;
-      z-index: 0;
-      margin-top: 4rem;
-      padding: 3rem 1rem;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      z-index: 10;
+      padding: 3rem 2rem;
       text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(58, 63, 56, 0.5);
+      backdrop-filter: blur(10px);
     }
 
     footer p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #999999;
     }
 
@@ -507,7 +393,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       z-index: 1000;
       overflow-y: auto;
       padding: 2rem 1rem;
@@ -523,12 +409,11 @@
 
     .modal-content {
       background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      border-radius: 0.5rem;
+      border-radius: 1rem;
       padding: 2.5rem;
       max-width: 700px;
       width: 100%;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     }
 
     @media (min-width: 768px) {
@@ -541,14 +426,8 @@
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: #2a2a2a;
       margin-bottom: 0.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .modal-title {
-        font-size: 2.5rem;
-      }
     }
 
     .modal-subtitle {
@@ -570,7 +449,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: #2a2a2a;
       margin-top: 1.5rem;
       margin-bottom: 0.75rem;
     }
@@ -579,7 +458,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #1a1a1a;
+      color: #2a2a2a;
       margin-top: 1rem;
       margin-bottom: 0.5rem;
     }
@@ -597,18 +476,13 @@
       margin-bottom: 0.5rem;
     }
 
-    .modal-body strong {
-      color: #1a1a1a;
-      font-weight: 600;
-    }
-
     .close-btn {
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
       background: transparent;
-      border: 1.5px solid #1a1a1a;
-      color: #1a1a1a;
+      border: 1.5px solid #2a2a2a;
+      color: #2a2a2a;
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 50%;
@@ -621,9 +495,94 @@
     }
 
     .close-btn:hover {
-      background: #1a1a1a;
-      color: #fafafa;
+      background: #2a2a2a;
+      color: #ffffff;
       transform: rotate(90deg);
+    }
+
+    /* Icon for contact section */
+    .contact-icon {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    /* DP Demo */
+    .demo-canvas {
+      width: 100%;
+      height: 300px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0.75rem;
+      background: #f9f9f9;
+      display: block;
+      margin: 1.5rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .demo-canvas {
+        height: 350px;
+      }
+    }
+
+    .slider-container {
+      margin: 1.5rem 0;
+    }
+
+    .slider-label {
+      font-size: 0.9rem;
+      color: #666666;
+      margin-bottom: 0.75rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    .slider-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      background: #f9f9f9;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 9999px;
+      appearance: none;
+      cursor: pointer;
+      accent-color: #2a2a2a;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      border: none;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #2a2a2a;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .eps-value {
+      font-weight: 700;
+      color: #2a2a2a;
+      min-width: 3rem;
+      text-align: right;
+      font-size: 0.95rem;
     }
   </style>
 </head>
@@ -631,80 +590,110 @@
 <body>
   <canvas id="bg"></canvas>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-wrapper">
-        <div class="hero-image">
-          <div class="portrait-container">
-            <img src="https://private-us-east-1.manuscdn.com/sessionFile/iI6A7rYYtGQEkNqymPeM9x/sandbox/LMhxfNbktQVMGxg46ZoWSN-img-1_1771788830000_na1fn_bWFyeWFtLXBvcnRyYWl0.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvaUk2QTdyWVl0R1FFa05xeW1QZU05eC9zYW5kYm94L0xNaHhmTmJrdFFWTUd4ZzQ2Wm9XU04taW1nLTFfMTc3MTc4ODgzMDAwMF9uYTFmbl9iV0Z5ZVdGdExYQnZjblJ5WVdsMC5qcGc~eC1vc3MtcHJvY2Vzcz1pbWFnZS9yZXNpemUsd18xOTIwLGhfMTkyMC9mb3JtYXQsd2VicC9xdWFsaXR5LHFfODAiLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3OTg3NjE2MDB9fX1dfQ__&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=fQIXu8fakKtJ85KUjnAt9ZAFy-6G73qAYLuRbj1VNwPbJ3Y1GsV7NEA19PpOYDfbBZSjlC48Y6PhdYxoJYloU66bOubYsqKc4KgqgFJBt9q0wfB5k1pE-t0WDDH29ErBS05u69WViegrFi~MmTVWyZjSeBymvvZ6k6mB5JJap77v9~lT4XusEmJGVd8VbSi1t1Jt2hV1wVXWd07jn-AypaOVNHqdsBAmOdxWUYVqabgcASNMT9uawhvxnF~v9E04048KhduYvcqQK1sBCVXzN2IdCP5N-ngYcXsZqcgz4TgwDUZIw4lSeX05ZNXAa7lcWWb65c617o6yO9FZLOi~7Q__" alt="Maryam Ghorbanvirdi" />
-          </div>
-        </div>
+  <div class="content-wrapper">
+    <!-- Header -->
+    <header>
+      <h1>Maryam Ghorbanvirdi</h1>
+      <p>Privacy & Security in Autonomous Systems</p>
+    </header>
 
-        <div class="hero-content">
-          <h1>Maryam Ghorbanvirdi</h1>
-          <p class="subtitle">PhD Student • Privacy & Security</p>
-          
-          <p class="intro-text">
-            I research privacy and security in autonomous systems, with a focus on <strong>differential privacy</strong>. My work explores how to protect sensitive information in cyber-physical systems while maintaining utility and safety. I'm passionate about building privacy-preserving technologies that don't compromise system performance.
-          </p>
-
-          <div class="social-links">
-            <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">
-              🔗 GitHub
-            </a>
-            <a href="mailto:maryam@example.com" class="social-btn">
-              ✉️ Email
-            </a>
-            <a href="#" class="social-btn">
-              📄 CV
-            </a>
-          </div>
-        </div>
+    <!-- About Section -->
+    <div class="section-wrapper">
+      <div class="section-left">
+        <div class="section-label">About Me Page</div>
+        <p class="section-description">Personalize your own About page.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="projects-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Research & Projects</h2>
-        <p class="section-description">Explore my work in privacy, security, and differential privacy. Each project represents a layer of research into protecting sensitive information.</p>
-      </div>
-
-      <div class="projects-grid" id="projectsGrid"></div>
-    </div>
-  </section>
-
-  <!-- Demo Section -->
-  <section class="demo-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">DP Micro-Demo</h2>
-        <p class="section-description">Visualizing privacy in motion: see how epsilon controls the privacy-utility trade-off</p>
-      </div>
-
-      <div class="demo-container">
-        <div class="demo-card">
-          <div class="slider-container">
-            <label class="slider-label">Lower ε ⇒ stronger privacy ⇒ more noise</label>
-            <div class="slider-wrapper">
-              <span>ε</span>
-              <input type="range" id="eps" min="0.2" max="5" step="0.1" value="1.2" />
-              <span class="eps-value" id="epsVal">1.2</span>
+      <div class="section-card">
+        <h2 class="card-title">About Me</h2>
+        <div class="card-content">
+          <div class="card-image">
+            <div class="portrait-container">
+              <img src="IMG_4291.jpeg" alt="Maryam Ghorbanvirdi" />
             </div>
           </div>
-
-          <canvas id="demo"></canvas>
-
-          <p class="demo-description">
-            <strong>White line:</strong> true vehicle trajectory. <strong>Gray line:</strong> DP-noisy observations shared for telemetry. As epsilon decreases, privacy increases but the noisy path diverges more from the true path.
-          </p>
+          <div class="card-text">
+            <div class="quote">"The work you do while you procrastinate is probably the work you should be doing for the rest of your life." — Maryam</div>
+            <p><strong>Hi! I'm Maryam.</strong></p>
+            <p>I'm a PhD student researching privacy and security in autonomous systems, with a focus on differential privacy. My work explores how to protect sensitive information in cyber-physical systems while maintaining utility and safety.</p>
+            <p>I'm passionate about building privacy-preserving technologies that don't compromise system performance.</p>
+            <div class="social-links">
+              <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">🔗 GitHub</a>
+              <a href="mailto:maryam@example.com" class="social-btn">✉️ Email</a>
+              <a href="#" class="social-btn">📄 CV</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- Projects Section -->
+    <div class="section-wrapper">
+      <div class="section-left">
+        <div class="section-label">Research & Projects</div>
+        <p class="section-description">Explore my work in privacy and security.</p>
+      </div>
+      <div class="section-card">
+        <h2 class="card-title">Projects</h2>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </div>
+
+    <!-- DP Demo Section -->
+    <div class="section-wrapper">
+      <div class="section-left">
+        <div class="section-label">Interactive Demo</div>
+        <p class="section-description">Explore privacy-utility trade-off.</p>
+      </div>
+      <div class="section-card">
+        <h2 class="card-title">Differential Privacy</h2>
+        <div class="card-text" style="margin-bottom: 1.5rem;">
+          <p>Adjust <strong>epsilon (ε)</strong> to see how privacy and noise change. Lower epsilon = stronger privacy but more noise.</p>
+        </div>
+        <div class="slider-container">
+          <label class="slider-label">Epsilon value:</label>
+          <div class="slider-wrapper">
+            <span>ε</span>
+            <input type="range" id="eps" min="0.2" max="5" step="0.1" value="1.2" />
+            <span class="eps-value" id="epsVal">1.2</span>
+          </div>
+        </div>
+        <canvas id="demo" class="demo-canvas"></canvas>
+        <p style="font-size: 0.9rem; color: #666666; margin-top: 1rem;">
+          <strong>Black line:</strong> true trajectory | <strong>Gray line:</strong> DP-noisy observations
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section-wrapper">
+      <div class="section-left">
+        <div class="section-label">Contact Page</div>
+        <p class="section-description">Makes it easy for visitors to reach out.</p>
+      </div>
+      <div class="section-card">
+        <div class="contact-icon">📬</div>
+        <h2 class="card-title">Contact Me</h2>
+        <div class="card-text" style="margin-bottom: 1.5rem;">
+          <p>Hello! Thanks so much for stopping by. If you have any questions or just want to say hi, please feel free to send an email to maryam@example.com or fill out the following form, and I'll get back to you as soon as I can.</p>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group half">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="e.g. bythursday@gmail.com" required />
+          </div>
+          <div class="form-group half">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Carrier Pigeon</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -726,246 +715,56 @@
 
     const projects = [
       {
-        title: 'Timing Inference (Client–Server)',
-        subtitle: 'Offset inference, jitter modeling, attacker analysis',
+        title: 'Timing Inference',
+        subtitle: 'Client–Server attacks & jitter modeling',
         icon: '⏱️',
         slug: 'timing-inference',
-        content: `
-          <h2>Timing Inference in Client-Server Systems</h2>
-          <h3>Overview</h3>
-          <p>This project explores timing-based side-channel attacks in client-server architectures, focusing on how attackers can infer sensitive information through timing variations.</p>
-          
-          <h3>Key Topics</h3>
-          <h3>Offset Inference</h3>
-          <p>Understanding how attackers can deduce timing offsets between client and server through careful observation of network delays and response patterns.</p>
-          
-          <h3>Jitter Modeling</h3>
-          <p>Analyzing the role of jitter in masking timing information and how it affects the privacy-utility tradeoff in distributed systems.</p>
-          
-          <h3>Attacker Models</h3>
-          <p>Examining different adversarial capabilities:</p>
-          <ul>
-            <li>Passive network observers</li>
-            <li>Active timing attackers</li>
-            <li>Colluding participants</li>
-          </ul>
-          
-          <h3>Research Questions</h3>
-          <ul>
-            <li>How much timing information is leaked by typical client-server protocols?</li>
-            <li>Can differential privacy mechanisms effectively mitigate timing attacks?</li>
-            <li>What are the performance costs of timing-oblivious designs?</li>
-          </ul>
-        `
+        content: `<h2>Timing Inference in Client-Server Systems</h2><h3>Overview</h3><p>Timing-based side-channel attacks reveal sensitive information through network delays and response patterns.</p><h3>Key Topics</h3><ul><li>Offset inference between client and server</li><li>Jitter modeling for privacy protection</li><li>Attacker capability analysis</li></ul>`
       },
       {
-        title: 'Realtime Systems & Privacy',
-        subtitle: 'Temporal constraints and privacy trade-offs in CPS',
+        title: 'Realtime Systems',
+        subtitle: 'Privacy & temporal constraints in CPS',
         icon: '⚡',
         slug: 'realtime-systems',
-        content: `
-          <h2>Privacy in Real-Time Systems</h2>
-          <h3>Overview</h3>
-          <p>Real-time systems have strict temporal constraints that can conflict with privacy-preserving mechanisms. This project investigates the interplay between timing guarantees and differential privacy.</p>
-          
-          <h3>Key Challenges</h3>
-          <h3>Deadline Constraints</h3>
-          <p>Real-time systems must meet hard or soft deadlines. Privacy mechanisms like noise addition can introduce latency that violates these constraints.</p>
-          
-          <h3>Predictability vs. Privacy</h3>
-          <p>Deterministic execution (required for real-time guarantees) can leak information. Randomization (required for privacy) can violate timing guarantees.</p>
-          
-          <h3>Resource Constraints</h3>
-          <p>Autonomous systems often operate on resource-constrained devices where privacy mechanisms must be lightweight.</p>
-          
-          <h3>Solutions & Trade-offs</h3>
-          <ul>
-            <li>Adaptive privacy budgets based on system load</li>
-            <li>Temporal noise injection that respects deadline constraints</li>
-            <li>Privacy-aware scheduling algorithms</li>
-          </ul>
-        `
+        content: `<h2>Privacy in Real-Time Systems</h2><h3>Challenge</h3><p>Real-time systems have strict deadlines that conflict with privacy mechanisms.</p><h3>Solutions</h3><ul><li>Adaptive privacy budgets</li><li>Deadline-aware noise injection</li><li>Privacy-aware scheduling</li></ul>`
       },
       {
-        title: 'Differential Privacy Notes',
-        subtitle: 'Technical foundations and mathematical intuitions',
+        title: 'DP Foundations',
+        subtitle: 'Technical theory & mechanisms',
         icon: '📐',
         slug: 'dp-notes',
-        content: `
-          <h2>Differential Privacy: Technical Foundations</h2>
-          <h3>What is Differential Privacy?</h3>
-          <p>Differential privacy provides a formal mathematical guarantee that the presence or absence of any individual's data has negligible impact on the output of an analysis.</p>
-          
-          <h3>Formal Definition</h3>
-          <p>A randomized algorithm M is (ε, δ)-differentially private if for all neighboring datasets D and D' differing in one record:</p>
-          <p><strong>Pr[M(D) ∈ S] ≤ e^ε · Pr[M(D') ∈ S] + δ</strong></p>
-          
-          <h3>Parameters</h3>
-          <ul>
-            <li><strong>ε (epsilon):</strong> Privacy loss parameter. Lower ε = stronger privacy, more noise</li>
-            <li><strong>δ (delta):</strong> Failure probability. Typically set to negligible values (e.g., 1/n²)</li>
-          </ul>
-          
-          <h3>Core Mechanisms</h3>
-          <h3>Laplace Mechanism</h3>
-          <p>Add Laplace noise proportional to the sensitivity of the query and inversely proportional to ε.</p>
-          
-          <h3>Gaussian Mechanism</h3>
-          <p>Add Gaussian noise for better utility in high-dimensional settings.</p>
-          
-          <h3>Exponential Mechanism</h3>
-          <p>For non-numeric outputs, select results with probability proportional to utility.</p>
-        `
+        content: `<h2>Differential Privacy Foundations</h2><h3>Definition</h3><p>Formal guarantee: presence/absence of any individual's data has negligible impact on output.</p><h3>Core Mechanisms</h3><ul><li>Laplace mechanism</li><li>Gaussian mechanism</li><li>Exponential mechanism</li></ul>`
       },
       {
-        title: 'Noise Types & Analysis',
-        subtitle: 'Laplace, Gaussian, and exponential mechanisms',
+        title: 'Noise Types',
+        subtitle: 'Laplace, Gaussian, exponential',
         icon: '🔊',
         slug: 'noise-types',
-        content: `
-          <h2>Noise Types in Differential Privacy</h2>
-          <h3>Laplace Noise</h3>
-          <h3>Characteristics</h3>
-          <ul>
-            <li>Symmetric around zero</li>
-            <li>Heavy tails (exponential decay)</li>
-            <li>Simple to implement and analyze</li>
-          </ul>
-          
-          <h3>Advantages</h3>
-          <ul>
-            <li>Tight privacy guarantees</li>
-            <li>Minimal noise for small queries</li>
-            <li>Easy composition</li>
-          </ul>
-          
-          <h3>Gaussian Noise</h3>
-          <h3>Characteristics</h3>
-          <ul>
-            <li>Normal distribution around zero</li>
-            <li>Lighter tails than Laplace</li>
-            <li>Better for high-dimensional queries</li>
-          </ul>
-          
-          <h3>Advantages</h3>
-          <ul>
-            <li>Smoother noise profile</li>
-            <li>Better utility in high dimensions</li>
-            <li>Easier to interpret statistically</li>
-          </ul>
-          
-          <h3>Exponential Mechanism</h3>
-          <h3>Use Case</h3>
-          <p>When output is non-numeric (e.g., selecting the best model)</p>
-          
-          <h3>Advantages</h3>
-          <ul>
-            <li>Preserves utility for high-quality outcomes</li>
-            <li>Applicable to discrete problems</li>
-          </ul>
-        `
+        content: `<h2>Noise Types in Differential Privacy</h2><h3>Laplace Noise</h3><ul><li>Symmetric, heavy tails</li><li>Tight privacy guarantees</li></ul><h3>Gaussian Noise</h3><ul><li>Better for high-dimensional data</li><li>Smoother noise profile</li></ul>`
       },
       {
-        title: 'SoK: DP in CPS/Autonomous Systems',
-        subtitle: 'Taxonomy + Privacy/Utility/Safety scoring framework',
+        title: 'SoK: DP in CPS',
+        subtitle: 'Taxonomy & privacy-utility-safety framework',
         icon: '🗺️',
         slug: 'sok-dp-cps',
-        content: `
-          <h2>Systematization of Knowledge: Differential Privacy in CPS</h2>
-          <h3>Executive Summary</h3>
-          <p>This systematization of knowledge (SoK) provides a comprehensive taxonomy of differential privacy applications in cyber-physical systems and autonomous systems, along with a novel scoring framework for evaluating privacy, utility, and safety trade-offs.</p>
-          
-          <h3>Taxonomy</h3>
-          <h3>By System Type</h3>
-          <ol>
-            <li><strong>Autonomous Vehicles:</strong> Location privacy, telemetry, V2X communication</li>
-            <li><strong>Drone Systems:</strong> Flight path privacy, sensor aggregation</li>
-            <li><strong>Industrial IoT:</strong> Sensor networks, control systems</li>
-            <li><strong>Smart Infrastructure:</strong> Traffic systems, power grids</li>
-          </ol>
-          
-          <h3>Privacy/Utility/Safety Framework</h3>
-          <h3>Privacy Score</h3>
-          <p>Measured by ε-δ parameters and composition bounds</p>
-          
-          <h3>Utility Score</h3>
-          <p>Task-specific metrics (accuracy, latency, throughput)</p>
-          
-          <h3>Safety Score</h3>
-          <p>Assurance that privacy mechanisms don't compromise system safety</p>
-          
-          <h3>Key Findings</h3>
-          <ol>
-            <li>Most existing work focuses on location privacy</li>
-            <li>Limited research on real-time constraints</li>
-            <li>Safety implications often overlooked</li>
-            <li>Significant gap between theory and practice</li>
-          </ol>
-        `
+        content: `<h2>Systematization: DP in Autonomous Systems</h2><h3>Taxonomy</h3><ul><li>Autonomous vehicles</li><li>Drone systems</li><li>Industrial IoT</li><li>Smart infrastructure</li></ul><h3>Evaluation Framework</h3><p>Privacy score, Utility score, Safety score</p>`
       },
       {
-        title: 'How to Write a SoK',
-        subtitle: 'Methodology, structure, and best practices',
+        title: 'How to Write SoK',
+        subtitle: 'Methodology & best practices',
         icon: '📝',
         slug: 'how-to-write-sok',
-        content: `
-          <h2>How to Write a Systematization of Knowledge (SoK)</h2>
-          <h3>What is a SoK?</h3>
-          <p>A Systematization of Knowledge is a research contribution that surveys, organizes, and analyzes existing knowledge in a field. Unlike traditional surveys, SoKs provide novel organizational frameworks and critical analysis.</p>
-          
-          <h3>Structure</h3>
-          <h3>1. Introduction</h3>
-          <ul>
-            <li>Motivate the need for systematization</li>
-            <li>Pose key research questions</li>
-            <li>Preview your organizational framework</li>
-          </ul>
-          
-          <h3>2. Taxonomy Development</h3>
-          <ul>
-            <li>Define dimensions of classification</li>
-            <li>Explain why these dimensions matter</li>
-            <li>Provide clear categorization criteria</li>
-          </ul>
-          
-          <h3>3. Systematic Analysis</h3>
-          <ul>
-            <li>Analyze papers according to taxonomy</li>
-            <li>Identify gaps and overlaps</li>
-            <li>Compare approaches critically</li>
-          </ul>
-          
-          <h3>Best Practices</h3>
-          <h3>Do's</h3>
-          <ul>
-            <li>Create a novel organizational framework</li>
-            <li>Be systematic and comprehensive</li>
-            <li>Provide critical analysis</li>
-            <li>Identify gaps and limitations</li>
-          </ul>
-          
-          <h3>Don'ts</h3>
-          <ul>
-            <li>Simply list papers chronologically</li>
-            <li>Avoid critical analysis</li>
-            <li>Miss important related work</li>
-            <li>Overclaim contributions</li>
-          </ul>
-        `
+        content: `<h2>How to Write a Systematization of Knowledge</h2><h3>Structure</h3><ol><li>Novel organizational framework</li><li>Taxonomy development</li><li>Systematic analysis</li><li>Gap identification</li></ol><h3>Best Practices</h3><ul><li>Be comprehensive and systematic</li><li>Provide critical analysis</li><li>Identify limitations</li></ul>`
       }
     ];
 
     function renderProjects() {
       const grid = document.getElementById('projectsGrid');
       grid.innerHTML = projects.map(project => `
-        <div class="project-card" onclick="openModal('${project.slug}')">
+        <div class="project-item" onclick="openModal('${project.slug}')">
           <div class="project-icon">${project.icon}</div>
           <h3 class="project-title">${project.title}</h3>
           <p class="project-description">${project.subtitle}</p>
-          <div class="project-link">
-            <span>Explore</span>
-            <span>→</span>
-          </div>
         </div>
       `).join('');
     }
@@ -973,7 +772,6 @@
     function openModal(slug) {
       const project = projects.find(p => p.slug === slug);
       if (!project) return;
-      
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalSubtitle').textContent = project.subtitle;
       document.getElementById('modalBody').innerHTML = project.content;
@@ -990,7 +788,13 @@
       if (e.target === this) closeModal();
     });
 
-    // Dark background particles for contrast
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      e.target.reset();
+    }
+
+    // Small, subtle particle network (crisp, no blur)
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let W = 0, H = 0, particles = [];
@@ -1004,7 +808,8 @@
         y: Math.random() * H,
         vx: (Math.random() - 0.5) * 0.4 * devicePixelRatio,
         vy: (Math.random() - 0.5) * 0.4 * devicePixelRatio,
-        r: (1.2 + Math.random() * 2.5) * devicePixelRatio
+        r: (1 + Math.random() * 1.5) * devicePixelRatio,
+        opacity: 0.3 + Math.random() * 0.4
       }));
     }
 
@@ -1013,6 +818,7 @@
 
     function bgLoop() {
       bctx.clearRect(0, 0, W, H);
+      
       for (const p of particles) {
         p.x += p.vx;
         p.y += p.vy;
@@ -1021,20 +827,21 @@
         if (p.y < 0) p.y = H;
         if (p.y > H) p.y = 0;
 
-        // Dark particles
+        // Crisp white particles (like reference image)
         bctx.beginPath();
         bctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        bctx.fillStyle = 'rgba(50, 50, 50, 0.35)';
+        bctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.7})`;
         bctx.fill();
 
-        // Dark connecting lines
+        // Crisp connecting lines (privacy network - like reference image)
         for (const q of particles) {
           const dx = p.x - q.x, dy = p.y - q.y;
           const d2 = dx * dx + dy * dy;
-          if (d2 > 0 && d2 < (180 * devicePixelRatio) * (180 * devicePixelRatio)) {
-            const a = 0.2 * (1 - d2 / ((180 * devicePixelRatio) * (180 * devicePixelRatio)));
-            bctx.strokeStyle = `rgba(100, 100, 100, ${a})`;
-            bctx.lineWidth = 1.5 * devicePixelRatio;
+          const maxDist = 180 * devicePixelRatio;
+          if (d2 > 0 && d2 < maxDist * maxDist) {
+            const a = 0.3 * (1 - d2 / (maxDist * maxDist));
+            bctx.strokeStyle = `rgba(200, 200, 200, ${a})`;
+            bctx.lineWidth = 0.8 * devicePixelRatio;
             bctx.beginPath();
             bctx.moveTo(p.x, p.y);
             bctx.lineTo(q.x, q.y);
@@ -1046,82 +853,72 @@
     }
     bgLoop();
 
-    // DP Demo
+    // DP Demo Canvas
     const demo = document.getElementById('demo');
-    const dctx = demo.getContext('2d');
-    let dW = 0, dH = 0;
+    if (demo) {
+      const dctx = demo.getContext('2d');
+      let dW = 0, dH = 0;
 
-    function resizeDemo() {
-      const rect = demo.getBoundingClientRect();
-      dW = demo.width = rect.width * devicePixelRatio;
-      dH = demo.height = rect.height * devicePixelRatio;
-      drawDemo(parseFloat(document.getElementById('eps').value));
-    }
-
-    function randn() {
-      let u = 0, v = 0;
-      while (u === 0) u = Math.random();
-      while (v === 0) v = Math.random();
-      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-    }
-
-    function drawDemo(eps) {
-      dctx.clearRect(0, 0, dW, dH);
-
-      dctx.strokeStyle = 'rgba(0, 0, 0, 0.15)';
-      dctx.lineWidth = 1.5 * devicePixelRatio;
-      dctx.strokeRect(10 * devicePixelRatio, 10 * devicePixelRatio, dW - 20 * devicePixelRatio, dH - 20 * devicePixelRatio);
-
-      const pad = 26 * devicePixelRatio;
-      const x0 = pad, x1 = dW - pad;
-      const yMid = dH * 0.58;
-
-      const pts = [];
-      const N = 42;
-      for (let i = 0; i < N; i++) {
-        const t = i / (N - 1);
-        const x = x0 + (x1 - x0) * t;
-        const y = yMid + Math.sin(t * Math.PI * 1.2) * (-0.22 * dH) + Math.sin(t * Math.PI * 3.0) * (-0.05 * dH);
-        pts.push({x, y});
+      function resizeDemo() {
+        const rect = demo.getBoundingClientRect();
+        dW = demo.width = rect.width * devicePixelRatio;
+        dH = demo.height = rect.height * devicePixelRatio;
+        drawDemo(parseFloat(document.getElementById('eps').value));
       }
 
-      const sigma = Math.min(22, Math.max(2.5, 18 / eps)) * devicePixelRatio;
-
-      dctx.lineWidth = 2.5 * devicePixelRatio;
-      dctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
-      dctx.beginPath();
-      dctx.moveTo(pts[0].x, pts[0].y);
-      for (const p of pts) dctx.lineTo(p.x, p.y);
-      dctx.stroke();
-
-      dctx.lineWidth = 2.5 * devicePixelRatio;
-      dctx.strokeStyle = 'rgba(100, 100, 100, 0.85)';
-      dctx.beginPath();
-      for (let i = 0; i < pts.length; i++) {
-        const p = pts[i];
-        const nx = p.x + randn() * sigma;
-        const ny = p.y + randn() * sigma;
-        if (i === 0) dctx.moveTo(nx, ny);
-        else dctx.lineTo(nx, ny);
+      function randn() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
       }
-      dctx.stroke();
 
-      dctx.font = `600 ${13 * devicePixelRatio}px 'Inter', sans-serif`;
-      dctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
-      dctx.fillText('true path', pad, 24 * devicePixelRatio);
-      dctx.fillStyle = 'rgba(100, 100, 100, 0.9)';
-      dctx.fillText('DP-noisy telemetry', pad + 100 * devicePixelRatio, 24 * devicePixelRatio);
-      dctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-      dctx.fillText(`noise ~ 1/ε`, dW - 110 * devicePixelRatio, 24 * devicePixelRatio);
+      function drawDemo(eps) {
+        dctx.clearRect(0, 0, dW, dH);
+        dctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
+        dctx.lineWidth = 1.5 * devicePixelRatio;
+        dctx.strokeRect(10 * devicePixelRatio, 10 * devicePixelRatio, dW - 20 * devicePixelRatio, dH - 20 * devicePixelRatio);
+
+        const pad = 26 * devicePixelRatio;
+        const x0 = pad, x1 = dW - pad;
+        const yMid = dH * 0.58;
+        const pts = [];
+        const N = 42;
+        for (let i = 0; i < N; i++) {
+          const t = i / (N - 1);
+          const x = x0 + (x1 - x0) * t;
+          const y = yMid + Math.sin(t * Math.PI * 1.2) * (-0.22 * dH) + Math.sin(t * Math.PI * 3.0) * (-0.05 * dH);
+          pts.push({x, y});
+        }
+
+        const sigma = Math.min(22, Math.max(2.5, 18 / eps)) * devicePixelRatio;
+        dctx.lineWidth = 2.5 * devicePixelRatio;
+        dctx.strokeStyle = 'rgba(0, 0, 0, 0.8)';
+        dctx.beginPath();
+        dctx.moveTo(pts[0].x, pts[0].y);
+        for (const p of pts) dctx.lineTo(p.x, p.y);
+        dctx.stroke();
+
+        dctx.lineWidth = 2.5 * devicePixelRatio;
+        dctx.strokeStyle = 'rgba(160, 160, 160, 0.75)';
+        dctx.beginPath();
+        for (let i = 0; i < pts.length; i++) {
+          const p = pts[i];
+          const nx = p.x + randn() * sigma;
+          const ny = p.y + randn() * sigma;
+          if (i === 0) dctx.moveTo(nx, ny);
+          else dctx.lineTo(nx, ny);
+        }
+        dctx.stroke();
+      }
+
+      resizeDemo();
+      window.addEventListener('resize', resizeDemo);
+      document.getElementById('eps').addEventListener('input', function() {
+        document.getElementById('epsVal').textContent = parseFloat(this.value).toFixed(1);
+        drawDemo(parseFloat(this.value));
+      });
     }
-
-    resizeDemo();
-    window.addEventListener('resize', resizeDemo);
-
-    document.getElementById('eps').addEventListener('input', function() {
-      document.getElementById('epsVal').textContent = parseFloat(this.value).toFixed(1);
-      drawDemo(parseFloat(this.value));
-    });
 
     renderProjects();
   </script>
