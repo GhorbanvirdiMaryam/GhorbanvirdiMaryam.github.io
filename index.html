@@ -8,7 +8,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -70,7 +69,6 @@
       z-index: 10;
     }
 
-    /* Header */
     header {
       padding: 3rem 2rem 2.5rem;
       text-align: center;
@@ -78,10 +76,10 @@
     }
 
     header h1 {
-      font-family: 'Playfair Display', serif;
+      font-family: "Times New Roman", Times, serif;
       font-size: 2.5rem;
       font-weight: 700;
-      color: #ffffff; /* requested */
+      color: #ffffff;
       margin-bottom: 0.4rem;
       letter-spacing: 0.01em;
       text-shadow: 0 2px 16px rgba(0,0,0,0.25);
@@ -99,7 +97,6 @@
       font-weight: 500;
     }
 
-    /* Section Layout */
     .section-wrapper {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -134,7 +131,7 @@
     .section-label {
       font-size: 0.86rem;
       font-weight: 700;
-      color: #ffffff; /* requested */
+      color: #ffffff;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 0.4rem;
@@ -253,7 +250,6 @@
       border-left: 3px solid var(--accent);
     }
 
-    /* Social Links */
     .social-links {
       display: flex;
       gap: 0.65rem;
@@ -284,7 +280,6 @@
       border-color: rgba(0, 0, 0, 0.2);
     }
 
-    /* Projects */
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -309,6 +304,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      text-decoration: none;
+      color: inherit;
     }
 
     .project-item:hover {
@@ -333,23 +330,6 @@
       line-height: 1.5;
     }
 
-    .project-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-    /* Contact Form */
     .contact-form {
       display: grid;
       grid-template-columns: 1fr;
@@ -421,7 +401,6 @@
       transform: translateY(-2px);
     }
 
-    /* Footer */
     footer {
       position: relative;
       z-index: 10;
@@ -437,7 +416,6 @@
       color: #dbe0d7;
     }
 
-    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -457,7 +435,7 @@
     }
 
     .modal-content {
-      position: relative; /* fixed close button positioning */
+      position: relative;
       background: #ffffff;
       border-radius: 1rem;
       padding: 2.25rem;
@@ -554,7 +532,6 @@
       transform: rotate(90deg);
     }
 
-    /* DP Demo */
     .demo-canvas {
       width: 100%;
       height: 300px;
@@ -632,7 +609,6 @@
       font-size: 0.95rem;
     }
 
-    /* Accessibility / Motion */
     @media (prefers-reduced-motion: reduce) {
       * {
         animation: none !important;
@@ -646,13 +622,11 @@
   <canvas id="bg" aria-hidden="true"></canvas>
 
   <div class="content-wrapper">
-    <!-- Header -->
     <header>
       <h1>Maryam Ghorbanvirdi</h1>
       <p>Privacy &amp; Security in Autonomous Systems</p>
     </header>
 
-    <!-- About Section -->
     <section class="section-wrapper" aria-labelledby="about-title">
       <div class="section-left">
         <div class="section-label">About Me Page</div>
@@ -669,13 +643,13 @@
 
           <div class="card-text">
             <p><strong>Hi! I’m Maryam.</strong></p>
-            <p> I am a PhD student in Computer Science at The George Washington University, researching security in autonomous systems through privacy-preserving mechanisms. My work investigates how runtime behavior in cyber-physical and real-time systems can leak sensitive information through timing and behavioral side channels.</p>
-            <p> I am particularly interested in indistinguishability-inspired techniques that make system execution less predictable while preserving utility and safety. </p>
-            <p> Currently, I am working on differential privacy mechanisms to improve the security of such systems. More broadly, I aim to design security methods that are practical for real-world autonomous systems.</p>
+            <p>I am a PhD student in Computer Science at The George Washington University, researching security in autonomous systems through privacy-preserving mechanisms. My work investigates how runtime behavior in cyber-physical and real-time systems can leak sensitive information through timing and behavioral side channels.</p>
+            <p>I am particularly interested in indistinguishability-inspired techniques that make system execution less predictable while preserving utility and safety.</p>
+            <p>Currently, I am working on differential privacy mechanisms to improve the security of such systems. More broadly, I aim to design security methods that are practical for real-world autonomous systems.</p>
 
             <div class="social-links">
               <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">GitHub</a>
-              <a href="mailto:maryam@example.com" class="social-btn">Email</a>
+              <a href="mailto:maryam.ghorbanvirdi@gwu.edu" class="social-btn">Email</a>
               <a href="#" class="social-btn">CV</a>
             </div>
           </div>
@@ -683,7 +657,6 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="section-wrapper" aria-labelledby="projects-title">
       <div class="section-left">
         <div class="section-label">Research &amp; Projects</div>
@@ -695,7 +668,6 @@
       </div>
     </section>
 
-    <!-- DP Demo Section -->
     <section class="section-wrapper" aria-labelledby="dp-demo-title">
       <div class="section-left">
         <div class="section-label">Interactive Demo</div>
@@ -725,7 +697,6 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="section-wrapper" aria-labelledby="contact-title">
       <div class="section-left">
         <div class="section-label">Contact Page</div>
@@ -760,12 +731,10 @@
     </section>
   </div>
 
-  <!-- Footer -->
   <footer>
     <p>© <span id="year"></span> Maryam Ghorbanvirdi • Privacy &amp; Security Researcher</p>
   </footer>
 
-  <!-- Project Modal -->
   <div class="modal" id="projectModal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="close-btn" type="button" onclick="closeModal()" aria-label="Close modal">✕</button>
@@ -776,61 +745,76 @@
   </div>
 
   <script>
-    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-
     const projects = [
-  { title: 'Indistinguishability', 
-   subtitle: 'Client–Server Application', 
-   slug: 'timing-inference', 
-   content: 
-     <h3>Overview</h3> 
-     <p>My research studies how to protect runtime behavior in autonomous systems from timing and behavioral side-channel attacks. The main idea is to adapt concepts from differential privacy to improve the security of such systems, using a notion known as “indistinguishability”. In autonomous systems, exploitable information can leak through runtime behavior. These may reveal internal system state or even task structure. It has been shown that adversaries can use this information to trigger security problems.</p> 
-  },
-  {
-    title: 'Realtime Systems',
-    subtitle: 'Privacy & temporal constraints in CPS',
-    slug: 'realtime-systems',
-    page: 'realtime.html'
-  },
-  {
-    title: 'DP Foundations',
-    subtitle: 'Technical theory & mechanisms',
-    slug: 'dp-foundations',
-    page: 'dp.html'
-  },
-  {
-    title: 'Noise Types',
-    subtitle: 'Laplace, Gaussian, and more',
-    slug: 'noise-types',
-    page: 'noise.html'
-  },
-  {
-    title: 'SoK: DP in CPS',
-    subtitle: 'Taxonomy & privacy-utility-safety framework',
-    slug: 'sok-dp-cps',
-    page: 'sok.html'
-  },
-    {
-    title: 'How to Write SoK',
-    subtitle: 'Methodology & best practices',
-    slug: 'how-to-write-sok',
-    page: 'how-to-write-sok.html'
-  }
-];
+      {
+        title: 'Indistinguishability',
+        subtitle: 'Client–Server Application',
+        slug: 'timing-inference',
+        content: `
+          <h3>Overview</h3>
+          <p>My research studies how to protect runtime behavior in autonomous systems from timing and behavioral side-channel attacks. The main idea is to adapt concepts from differential privacy to improve the security of such systems, using a notion known as “indistinguishability”. In autonomous systems, exploitable information can leak through runtime behavior. These may reveal internal system state or even task structure. It has been shown that adversaries can use this information to trigger security problems.</p>
+        `
+      },
+      {
+        title: 'Realtime Systems',
+        subtitle: 'Privacy & temporal constraints in CPS',
+        slug: 'realtime-systems',
+        page: 'realtime.html'
+      },
+      {
+        title: 'DP Foundations',
+        subtitle: 'Technical theory & mechanisms',
+        slug: 'dp-foundations',
+        page: 'dp.html'
+      },
+      {
+        title: 'Noise Types',
+        subtitle: 'Laplace, Gaussian, and more',
+        slug: 'noise-types',
+        page: 'noise.html'
+      },
+      {
+        title: 'SoK: DP in CPS',
+        subtitle: 'Taxonomy & privacy-utility-safety framework',
+        slug: 'sok-dp-cps',
+        page: 'sok.html'
+      },
+      {
+        title: 'How to Write SoK',
+        subtitle: 'Methodology & best practices',
+        slug: 'how-to-write-sok',
+        page: 'how-to-write-sok.html'
+      }
+    ];
 
     const projectsGrid = document.getElementById('projectsGrid');
-      
-      projectsGrid.innerHTML = projects.map(project => `
-        <a href="${project.page}" class="project-card">
-          <h3>${project.title}</h3>
-          <p>${project.subtitle}</p>
-        </a>
-      `).join('');
-
-    // Modal logic
     const modal = document.getElementById('projectModal');
+
+    function renderProjects() {
+      projectsGrid.innerHTML = '';
+
+      projects.forEach(project => {
+        let card;
+
+        if (project.page) {
+          card = document.createElement('a');
+          card.href = project.page;
+        } else {
+          card = document.createElement('div');
+          card.addEventListener('click', () => openModal(project.slug));
+        }
+
+        card.className = 'project-item';
+        card.innerHTML = `
+          <div class="project-title">${project.title}</div>
+          <div class="project-description">${project.subtitle}</div>
+        `;
+
+        projectsGrid.appendChild(card);
+      });
+    }
 
     function openModal(slug) {
       const project = projects.find(p => p.slug === slug);
@@ -838,7 +822,7 @@
 
       document.getElementById('modalTitle').textContent = project.title;
       document.getElementById('modalSubtitle').textContent = project.subtitle;
-      document.getElementById('modalBody').innerHTML = project.content;
+      document.getElementById('modalBody').innerHTML = project.content || '';
 
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
@@ -861,14 +845,12 @@
       }
     });
 
-    // Contact form demo
     function handleSubmit(e) {
       e.preventDefault();
       alert('Thank you for your message! I will get back to you soon.');
       e.target.reset();
     }
 
-    // ===== Background Particle Network (cleaned + faster) =====
     const bg = document.getElementById('bg');
     const bctx = bg.getContext('2d');
     let particles = [];
@@ -900,7 +882,6 @@
       const maxDist = 155 * DPR;
       const maxDist2 = maxDist * maxDist;
 
-      // Move + draw particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         p.x += p.vx;
@@ -917,7 +898,6 @@
         bctx.fill();
       }
 
-      // Connect lines (only draw each pair once)
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         for (let j = i + 1; j < particles.length; j++) {
@@ -945,7 +925,6 @@
     resizeBg();
     drawParticles();
 
-    // ===== DP Demo Canvas =====
     const demo = document.getElementById('demo');
     const epsSlider = document.getElementById('eps');
     const epsVal = document.getElementById('epsVal');
@@ -974,7 +953,6 @@
       function drawDemo(eps) {
         dctx.clearRect(0, 0, dW, dH);
 
-        // frame
         dctx.strokeStyle = 'rgba(0, 0, 0, 0.10)';
         dctx.lineWidth = 1.25 * dpr;
         dctx.strokeRect(10 * dpr, 10 * dpr, dW - 20 * dpr, dH - 20 * dpr);
@@ -996,10 +974,8 @@
           pts.push({ x, y });
         }
 
-        // noise scale (smaller eps => larger noise)
         const sigma = Math.min(22, Math.max(2.5, 18 / eps)) * dpr;
 
-        // true path
         dctx.lineWidth = 2.3 * dpr;
         dctx.strokeStyle = 'rgba(0, 0, 0, 0.82)';
         dctx.beginPath();
@@ -1009,7 +985,6 @@
         }
         dctx.stroke();
 
-        // noisy path
         dctx.lineWidth = 2.3 * dpr;
         dctx.strokeStyle = 'rgba(155, 155, 155, 0.78)';
         dctx.beginPath();
@@ -1033,7 +1008,6 @@
       resizeDemo();
     }
 
-    // Initial render
     renderProjects();
   </script>
 </body>
