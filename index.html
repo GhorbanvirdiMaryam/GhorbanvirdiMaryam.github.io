@@ -333,6 +333,22 @@
       line-height: 1.5;
     }
 
+    .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
     /* Contact Form */
     .contact-form {
       display: grid;
@@ -763,124 +779,54 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Project data (icons removed)
-    const projects = [
-      {
-        title: 'Timing Inference',
-        subtitle: 'Client–Server Application',
-        slug: 'timing-inference',
-        content: `
-          <h2>Timing Inference in Client-Server Systems</h2>
-          <h3>Overview</h3>
-          <p>Timing-based side-channel attacks reveal sensitive information through network delays and response patterns.</p>
-          <h3>Key Topics</h3>
-          <ul>
-            <li>Offset inference between client and server</li>
-            <li>Jitter modeling for privacy protection</li>
-            <li>Attacker capability analysis</li>
-          </ul>
-        `
-      },
-      {
-        title: 'Realtime Systems',
-        subtitle: 'Privacy & temporal constraints in CPS',
-        slug: 'realtime-systems',
-        content: `
-          <h2>Privacy in Real-Time Systems</h2>
-          <h3>Challenge</h3>
-          <p>Real-time systems have strict deadlines that can conflict with privacy mechanisms.</p>
-          <h3>Solutions</h3>
-          <ul>
-            <li>Adaptive privacy budgets</li>
-            <li>Deadline-aware noise injection</li>
-            <li>Privacy-aware scheduling</li>
-          </ul>
-        `
-      },
-      {
-        title: 'DP Foundations',
-        subtitle: 'Technical theory & mechanisms',
-        slug: 'dp-foundations',
-        content: `
-          <h2>Differential Privacy Foundations</h2>
-          <h3>Definition</h3>
-          <p>Differential privacy provides a formal guarantee that the presence or absence of an individual's data has a limited effect on the output.</p>
-          <h3>Core Mechanisms</h3>
-          <ul>
-            <li>Laplace mechanism</li>
-            <li>Gaussian mechanism</li>
-            <li>Exponential mechanism</li>
-          </ul>
-        `
-      },
-      {
-        title: 'Noise Types',
-        subtitle: 'Laplace, Gaussian, and more',
-        slug: 'noise-types',
-        content: `
-          <h2>Noise Types in Differential Privacy</h2>
-          <h3>Laplace Noise</h3>
-          <ul>
-            <li>Symmetric distribution with heavier tails</li>
-            <li>Common in basic ε-DP mechanisms</li>
-          </ul>
-          <h3>Gaussian Noise</h3>
-          <ul>
-            <li>Useful in \u03b5,\u03b4-DP and high-dimensional settings</li>
-            <li>Smoother perturbation profile</li>
-          </ul>
-        `
-      },
-      {
-        title: 'SoK: DP in CPS',
-        subtitle: 'Taxonomy & privacy-utility-safety framework',
-        slug: 'sok-dp-cps',
-        content: `
-          <h2>Systematization: DP in Autonomous Systems</h2>
-          <h3>Taxonomy</h3>
-          <ul>
-            <li>Autonomous vehicles</li>
-            <li>Drone systems</li>
-            <li>Industrial IoT</li>
-            <li>Smart infrastructure</li>
-          </ul>
-          <h3>Evaluation Framework</h3>
-          <p>Privacy score, Utility score, and Safety score for systematic comparison across papers.</p>
-        `
-      },
-      {
-        title: 'How to Write SoK',
-        subtitle: 'Methodology & best practices',
-        slug: 'how-to-write-sok',
-        content: `
-          <h2>How to Write a Systematization of Knowledge</h2>
-          <h3>Structure</h3>
-          <ol>
-            <li>Novel organizational framework</li>
-            <li>Taxonomy development</li>
-            <li>Systematic analysis</li>
-            <li>Gap identification</li>
-          </ol>
-          <h3>Best Practices</h3>
-          <ul>
-            <li>Be comprehensive and systematic</li>
-            <li>Provide critical analysis</li>
-            <li>Identify limitations and future directions</li>
-          </ul>
-        `
-      }
-    ];
 
-    // Render projects (icon block removed)
-    function renderProjects() {
-      const grid = document.getElementById('projectsGrid');
-      grid.innerHTML = projects.map(project => `
-        <div class="project-item" onclick="openModal('${project.slug}')">
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-description">${project.subtitle}</p>
-        </div>
+    const projects = [
+  {
+    title: 'Timing Inference',
+    subtitle: 'Client–Server Application',
+    slug: 'timing-inference',
+    page: 'timing-inference.html'
+  },
+  {
+    title: 'Realtime Systems',
+    subtitle: 'Privacy & temporal constraints in CPS',
+    slug: 'realtime-systems',
+    page: 'realtime-systems.html'
+  },
+  {
+    title: 'DP Foundations',
+    subtitle: 'Technical theory & mechanisms',
+    slug: 'dp-foundations',
+    page: 'dp-foundations.html'
+  },
+  {
+    title: 'Noise Types',
+    subtitle: 'Laplace, Gaussian, and more',
+    slug: 'noise-types',
+    page: 'noise-types.html'
+  },
+  {
+    title: 'SoK: DP in CPS',
+    subtitle: 'Taxonomy & privacy-utility-safety framework',
+    slug: 'sok-dp-cps',
+    page: 'sok-dp-cps.html'
+  },
+    {
+    title: 'How to Write SoK',
+    subtitle: 'Methodology & best practices',
+    slug: 'how-to-write-sok',
+    page: 'how-to-write-sok.html'
+  }
+];
+
+    const projectsGrid = document.getElementById('projectsGrid');
+      
+      projectsGrid.innerHTML = projects.map(project => `
+        <a href="${project.page}" class="project-card">
+          <h3>${project.title}</h3>
+          <p>${project.subtitle}</p>
+        </a>
       `).join('');
-    }
 
     // Modal logic
     const modal = document.getElementById('projectModal');
