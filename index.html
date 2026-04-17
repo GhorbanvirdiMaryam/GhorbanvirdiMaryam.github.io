@@ -251,33 +251,26 @@
     }
 
     .social-links {
-      display: flex;
-      gap: 0.65rem;
-      flex-wrap: wrap;
       margin-top: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text);
     }
-
+    
     .social-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.58rem 1rem;
-      border-radius: 0.45rem;
-      background: #f4f4f4;
-      border: 1px solid rgba(0, 0, 0, 0.08);
       color: var(--text);
       text-decoration: none;
-      font-size: 0.84rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      transition: transform var(--transition), background var(--transition), color var(--transition), border-color var(--transition);
-      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      display: inline;
     }
-
+    
     .social-btn:hover {
-      background: var(--accent-dark);
-      color: #fff;
-      transform: translateY(-2px);
-      border-color: rgba(0, 0, 0, 0.2);
+      color: var(--muted);
+      text-decoration: underline;
     }
 
     .projects-grid {
@@ -648,10 +641,11 @@
             <p>Currently, I am working on differential privacy mechanisms to improve the security of such systems. More broadly, I aim to design security methods that are practical for real-world autonomous systems.</p>
 
             <div class="social-links">
-              <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">GitHub</a>
-              <a href="mailto:maryam.ghorbanvirdi@gwu.edu" class="social-btn">Email</a>
-              <a href="#" class="social-btn">CV</a>
-            </div>
+            <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">GitHub</a> |
+            <a href="https://scholar.google.com/citations?user=Pcp8S5AAAAAJ&hl=en" target="_blank" rel="noreferrer" class="social-btn">Google Scholar</a> |
+            <a href="https://www.linkedin.com/in/maryam-ghorbanvirdi/" target="_blank" rel="noreferrer" class="social-btn">LinkedIn</a> |
+            <a href="#" class="social-btn">CV</a> |
+          </div>
           </div>
         </div>
       </div>
