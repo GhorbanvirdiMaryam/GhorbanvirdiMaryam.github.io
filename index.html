@@ -917,7 +917,7 @@
 
         bctx.beginPath();
         bctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        bctx.fillStyle = `rgba(255,255,255,${p.a})`;
+        bctx.fillStyle = `rgba(70, 92, 76, ${p.a})`;
         bctx.fill();
       }
 
@@ -931,7 +931,7 @@
 
           if (d2 < maxDist2) {
             const alpha = 0.18 * (1 - d2 / maxDist2);
-            bctx.strokeStyle = `rgba(220,220,220,${alpha})`;
+            bctx.strokeStyle = `rgba(85, 105, 90, ${alpha})`;
             bctx.lineWidth = 0.8 * DPR;
             bctx.beginPath();
             bctx.moveTo(p.x, p.y);
