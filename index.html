@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Maryam Ghorbanvirdi — Privacy &amp; Security</title>
+  <meta name="description" content="PhD researcher in Privacy & Security for Autonomous Systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Spectral:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-0: #dbe4df;
+      --bg-1: #e3eae5;
+      --bg-2: #edf1ee;
+      --teal: #507882;
+      --teal-bright: #35606d;
+      --teal-dim: #8fb0b8;
+      --sage: #6f8a6b;
+      --peach: #edd7c8;
+      --text: #26312c;
+      --muted: #5f6d66;
+      --muted-soft: #8fa096;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-border: rgba(80, 120, 130, 0.22);
+      --card-border-hot: rgba(80, 120, 130, 0.5);
+      --shadow: 0 20px 50px rgba(45, 65, 60, 0.16);
+      --serif: "Spectral", "Times New Roman", Times, serif;
+      --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+      --radius-xl: 1.25rem;
+      --radius-lg: 0.75rem;
+      --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { width: 100%; min-height: 100%; }
+    body {
+      font-family: var(--serif);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      background:
+        radial-gradient(1200px 700px at 80% -10%, rgba(80, 120, 130, 0.16), transparent 60%),
+        radial-gradient(900px 600px at 8% 28%, rgba(237, 215, 200, 0.5), transparent 60%),
+        radial-gradient(1000px 700px at 90% 85%, rgba(140, 165, 140, 0.16), transparent 65%),
+        var(--bg-0);
+    }
+    ::selection { background: rgba(80, 120, 130, 0.3); color: #1c2723; }
+    /* ---------- animated background layers ---------- */
+    canvas#bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(80, 120, 130, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(80, 120, 130, 0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 78%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 78%);
+    }
+    .radar {
+      position: fixed; z-index: 1; pointer-events: none;
+      width: 130vmax; height: 130vmax;
+      top: -65vmax; right: -65vmax;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg,
+        rgba(80, 120, 130, 0.10) 0deg,
+        rgba(80, 120, 130, 0.028) 24deg,
+        transparent 60deg, transparent 360deg);
+      animation: radarSpin 22s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes radarSpin { to { transform: rotate(360deg); } }
+    /* scroll progress bar */
+    #progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--teal-dim), var(--teal-bright));
+      z-index: 200; box-shadow: 0 0 12px rgba(80, 120, 130, 0.8);
+    }
+    .content-wrapper { position: relative; z-index: 10; }
+    /* ---------- nav ---------- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.85rem 1.75rem;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(80, 120, 130, 0.12);
+    }
+    .nav-brand {
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.12em;
+      color: var(--teal); text-decoration: none; text-transform: uppercase;
+    }
+    .nav-brand .blink { animation: blink 1.15s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .nav-links { display: flex; gap: 1.4rem; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em;
+      color: var(--muted); text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+      position: relative; padding: 0.2rem 0;
+    }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: -2px; height: 1px; width: 0%;
+      background: var(--teal-bright); transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--teal-bright); }
+    .nav-links a:hover::after { width: 100%; }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+    /* ---------- hero ---------- */
+    header {
+      padding: 9.5rem 2rem 5rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+    .hero-eyebrow .dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: #3e8f55; margin-right: 0.5rem; vertical-align: 1px;
+      box-shadow: 0 0 10px rgba(62, 143, 85, 0.7);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.35; } }
+    header h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      line-height: 1.12;
+      margin-bottom: 0.9rem;
+      text-shadow: 0 2px 30px rgba(80, 120, 130, 0.25);
+    }
+    header h1 .accent {
+      background: linear-gradient(100deg, var(--teal-bright), var(--sage));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--muted); font-weight: 400;
+      max-width: 620px; margin: 0 auto 1.4rem;
+    }
+    .typeline {
+      font-family: var(--mono); font-size: 0.9rem; color: var(--teal);
+      min-height: 1.6em;
+    }
+    .typeline::before { content: "> "; color: var(--muted-soft); }
+    .typeline .cursor {
+      display: inline-block; width: 0.55em; height: 1.05em;
+      background: var(--teal); vertical-align: -0.15em; margin-left: 2px;
+      animation: blink 1s steps(1) infinite;
+    }
+    .hero-scroll {
+      margin-top: 3.2rem; font-family: var(--mono); font-size: 0.68rem;
+      letter-spacing: 0.25em; color: var(--muted-soft); text-transform: uppercase;
+    }
+    .hero-scroll::after {
+      content: ""; display: block; width: 1px; height: 44px;
+      margin: 0.7rem auto 0;
+      background: linear-gradient(var(--teal), transparent);
+      animation: dropline 2s ease-in-out infinite;
+    }
+    @keyframes dropline { 0% { transform: scaleY(0); transform-origin: top; } 55% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+    /* ---------- section layout ---------- */
+    .section-wrapper {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 4rem;
+      max-width: 1400px;
+      margin: 0 auto 7rem;
+      padding: 0 2rem;
+      align-items: flex-start;
+      scroll-margin-top: 5.5rem;
+    }
+    @media (max-width: 1024px) {
+      .section-wrapper { grid-template-columns: 160px 1fr; gap: 2.5rem; margin-bottom: 5.5rem; }
+    }
+    @media (max-width: 768px) {
+      .section-wrapper { grid-template-columns: 1fr; gap: 1rem; padding: 0 1rem; margin-bottom: 3.5rem; }
+    }
+    .section-left { padding-top: 1rem; position: sticky; top: 6rem; }
+    @media (max-width: 768px) { .section-left { position: static; } }
+    .section-index {
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.25em;
+      color: var(--teal); margin-bottom: 0.55rem;
+    }
+    .section-index::after {
+      content: ""; display: block; width: 42px; height: 1px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      margin-top: 0.55rem;
+    }
+    .section-label {
+      font-size: 1.5rem; font-weight: 700; color: var(--text);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.5rem; line-height: 1.35;
+    }
+    .section-description { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+    /* ---------- cards ---------- */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 3rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+      transition: border-color var(--transition);
+    }
+    .section-card::before, .section-card::after {
+      content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
+      border-color: rgba(80, 120, 130, 0.55); border-style: solid;
+    }
+    .section-card::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; border-top-left-radius: var(--radius-xl); }
+    .section-card::after { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; border-bottom-right-radius: var(--radius-xl); }
+    .section-card:hover { border-color: rgba(80, 120, 130, 0.3); }
+    @media (max-width: 768px) {
+      .section-card { padding: 1.75rem; border-radius: 1.1rem; }
+    }
+    /* scroll reveal */
+    .reveal { opacity: 0; transform: translateY(34px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .card-title {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+      text-align: center;
+    }
+    .card-title .accent { color: var(--teal-bright); }
+    .card-content {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2.25rem; align-items: center;
+    }
+    @media (max-width: 768px) { .card-content { grid-template-columns: 1fr; gap: 1.2rem; } }
+    .card-image { text-align: center; }
+    .portrait-container {
+      aspect-ratio: 3 / 4;
+      border-radius: 0.85rem;
+      overflow: hidden;
+      border: 1px solid rgba(80, 120, 130, 0.25);
+      box-shadow: 0 10px 30px rgba(45, 65, 60, 0.2);
+      background: var(--peach);
+      position: relative;
+    }
+    .portrait-container img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(0.92);
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+    }
+    .portrait-container:hover img { transform: scale(1.035); filter: saturate(1.05); }
+    .portrait-container .scan {
+      position: absolute; left: 0; right: 0; height: 34%; top: -40%;
+      background: linear-gradient(180deg, transparent, rgba(80, 120, 130, 0.13), transparent);
+      animation: scanmove 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes scanmove { 0% { top: -40%; } 55% { top: 110%; } 100% { top: 110%; } }
+    .card-text {
+      font-size: 0.98rem;
+      color: #46524b;
+      line-height: 1.85;
+      text-align: justify;
+      text-justify: inter-word;
+    }
+    .card-text p { margin-bottom: 0.95rem; }
+    .card-text strong { color: var(--text); font-weight: 600; }
+    .quote {
+      font-size: 0.9rem; color: var(--muted); font-style: italic;
+      margin: 1.25rem 0; padding-left: 0.9rem; border-left: 3px solid var(--teal-dim);
+    }
+    .social-links { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .social-btn {
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em;
+      text-transform: uppercase; text-decoration: none;
+      color: var(--teal-bright);
+      border: 1px solid rgba(80, 120, 130, 0.3);
+      border-radius: 999px;
+      padding: 0.4rem 0.95rem;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition), color var(--transition);
+      background: rgba(80, 120, 130, 0.05);
+    }
+    .social-btn:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    /* ---------- projects ---------- */
+    .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 768px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+    .project-item {
+      background: rgba(80, 120, 130, 0.045);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem 1.25rem;
+      border: 1px solid rgba(80, 120, 130, 0.12);
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition), border-color var(--transition);
+      cursor: pointer;
+      text-align: center;
+      min-height: 126px;
+      display: flex; flex-direction: column; justify-content: center;
+      text-decoration: none; color: inherit;
+      position: relative; overflow: hidden;
+    }
+    .project-item::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(320px 130px at var(--mx, 50%) var(--my, 0%), rgba(80, 120, 130, 0.13), transparent 70%);
+      opacity: 0; transition: opacity var(--transition); pointer-events: none;
+    }
+    .project-item:hover::before { opacity: 1; }
+    .project-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(45, 65, 60, 0.16), 0 0 0 1px rgba(80, 120, 130, 0.22) inset;
+      background: rgba(80, 120, 130, 0.07);
+      border-color: var(--card-border-hot);
+    }
+    .project-num {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.22em;
+      color: var(--muted-soft); margin-bottom: 0.5rem; text-transform: uppercase;
+    }
+    .project-title {
+      font-family: var(--serif); font-size: 1.12rem; font-weight: 700;
+      color: var(--teal-bright); margin-bottom: 0.35rem; line-height: 1.35;
+    }
+    .project-description { font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+    /* ---------- publications ---------- */
+    .pub-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .pub-item {
+      display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: baseline;
+      background: rgba(80, 120, 130, 0.045);
+      border: 1px solid rgba(80, 120, 130, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 1.15rem 1.35rem;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+    .pub-item:hover {
+      border-color: var(--card-border-hot);
+      background: rgba(80, 120, 130, 0.08);
+      transform: translateX(4px);
+    }
+    .pub-year {
+      font-family: var(--mono); font-size: 0.8rem; color: var(--teal);
+      letter-spacing: 0.06em; white-space: nowrap;
+    }
+    .pub-title { font-size: 1.02rem; font-weight: 600; color: var(--text); line-height: 1.45; margin-bottom: 0.2rem; }
+    .pub-meta { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+    .pub-meta em { color: #4c5c53; }
+    .pub-tag {
+      display: inline-block; font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #8a6d1f; border: 1px solid rgba(154, 123, 45, 0.45);
+      border-radius: 999px; padding: 0.12rem 0.6rem; margin-left: 0.5rem;
+      vertical-align: 2px;
+    }
+    @media (max-width: 600px) { .pub-item { grid-template-columns: 1fr; gap: 0.3rem; } }
+    /* ---------- contact form ---------- */
+    .contact-form { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.25rem; }
+    @media (min-width: 768px) { .contact-form { grid-template-columns: 1fr 1fr; } }
+    .form-group { grid-column: 1 / -1; }
+    .form-group.half { grid-column: auto; }
+    label {
+      display: block; font-family: var(--mono); font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; color: var(--muted); margin-bottom: 0.5rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(80, 120, 130, 0.18);
+      border-radius: 0.55rem;
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: #f5f8f6;
+      transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted-soft); }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(80, 120, 130, 0.14);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    .submit-btn {
+      background: linear-gradient(120deg, #507882, #3d5f68);
+      color: #f2f7f5;
+      padding: 0.8rem 1.7rem;
+      border: 1px solid rgba(80, 120, 130, 0.35);
+      border-radius: 0.55rem;
+      font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 600; cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+      justify-self: start;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.18);
+      box-shadow: 0 8px 26px rgba(80, 120, 130, 0.45);
+    }
+    /* ---------- footer ---------- */
+    footer {
+      position: relative; z-index: 10;
+      padding: 2.6rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(80, 120, 130, 0.12);
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+    footer p { font-size: 0.85rem; color: var(--muted); }
+    .footer-status {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+      color: var(--muted-soft); margin-top: 0.55rem; text-transform: lowercase;
+    }
+    .footer-status .ok { color: #3e8f55; }
+    /* ---------- modal ---------- */
+    .modal {
+      display: none; position: fixed; inset: 0;
+      background: rgba(38, 52, 47, 0.45);
+      z-index: 1000; overflow-y: auto; padding: 2rem 1rem;
+      backdrop-filter: blur(6px);
+    }
+    .modal.active {
+      display: flex; align-items: flex-start; justify-content: center; padding-top: 3rem;
+      animation: modalFade 0.25s ease-out;
+    }
+    @keyframes modalFade { from { opacity: 0; } to { opacity: 1; } }
+    .modal-content {
+      position: relative;
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2.25rem;
+      max-width: 720px; width: 100%;
+      box-shadow: 0 24px 70px rgba(45, 65, 60, 0.3);
+      border: 1px solid rgba(80, 120, 130, 0.22);
+      animation: modalUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes modalUp { from { opacity: 0; transform: translateY(22px) scale(0.98); } to { opacity: 1; transform: none; } }
+    @media (min-width: 768px) { .modal-content { padding: 2.75rem; } }
+    .modal-title {
+      font-family: var(--serif); font-size: 1.9rem; font-weight: 700;
+      color: var(--teal-bright); margin-bottom: 0.35rem; padding-right: 2.5rem;
+    }
+    .modal-subtitle { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.25rem; font-weight: 500; }
+    .modal-body {
+      color: #46524b; line-height: 1.8; max-height: 70vh; overflow-y: auto;
+      font-size: 0.95rem; padding-right: 0.25rem;
+    }
+    .modal-body h2 {
+      font-family: var(--serif); font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin-top: 1.1rem; margin-bottom: 0.55rem;
+    }
+    .modal-body h3 {
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 700;
+      color: var(--text); margin-top: 0.85rem; margin-bottom: 0.35rem;
+    }
+    .modal-body p { margin-bottom: 0.75rem; }
+    .modal-body ul, .modal-body ol { margin-left: 1.15rem; margin-bottom: 0.75rem; }
+    .modal-body li { margin-bottom: 0.35rem; }
+    .close-btn {
+      position: absolute; top: 1rem; right: 1rem;
+      background: transparent;
+      border: 1.5px solid rgba(80, 120, 130, 0.5);
+      color: var(--teal-bright);
+      width: 2.25rem; height: 2.25rem; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; line-height: 1;
+      transition: transform var(--transition), background var(--transition), color var(--transition);
+    }
+    .close-btn:hover { background: var(--teal); color: #fff; transform: rotate(90deg); }
+    /* ---------- DP demo ---------- */
+    .demo-canvas {
+      width: 100%; height: 300px;
+      border: 1px solid rgba(80, 120, 130, 0.18);
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.6);
+      display: block; margin: 1rem 0;
+    }
+    @media (min-width: 768px) { .demo-canvas { height: 350px; } }
+    .slider-container { margin: 1.2rem 0 0.8rem; }
+    .slider-label {
+      font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 0.55rem; display: block; font-weight: 500;
+    }
+    .slider-wrapper {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem; border-radius: 0.5rem;
+      border: 1px solid rgba(80, 120, 130, 0.18);
+      background: rgba(255, 255, 255, 0.55);
+    }
+    input[type="range"] {
+      flex: 1; height: 4px;
+      background: rgba(80, 120, 130, 0.2);
+      border-radius: 9999px; appearance: none; cursor: pointer;
+      accent-color: var(--teal);
+      padding: 0; border: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--teal-bright); cursor: pointer;
+      box-shadow: 0 0 10px rgba(80, 120, 130, 0.8); border: none;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--teal-bright); cursor: pointer; border: none;
+      box-shadow: 0 0 10px rgba(80, 120, 130, 0.8);
+    }
+    .eps-value {
+      font-family: var(--mono); font-weight: 700; color: var(--teal-bright);
+      min-width: 2.6rem; text-align: right; font-size: 0.95rem;
+    }
+    .demo-legend { font-size: 0.9rem; color: var(--muted); margin-top: 0.4rem; }
+    .demo-legend strong { color: var(--text); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+  <div class="radar" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div id="progress" aria-hidden="true"></div>
+  <nav>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#talks">Talks</a>
+      <a href="#demo-section">Demo</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <div class="content-wrapper" id="top">
+    <header>
+      <p class="hero-eyebrow"><span class="dot"></span>PhD Researcher · GWU</p>
+      <h1>Maryam <span class="accent">Ghorbanvirdi</span></h1>
+      <p class="hero-sub">Privacy &amp; Security in Autonomous Systems</p>
+      <p class="typeline"><span id="typed"></span><span class="cursor"></span></p>
+    </header>
+    <section class="section-wrapper" id="about" aria-labelledby="about-title">
+      <div class="section-left reveal">
+        <div class="section-label">About Me Page</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="about-title">About <span class="accent">Me</span></h2>
+        <div class="card-content">
+          <div class="card-image">
+            <div class="portrait-container">
+              <img src="IMG_7842 2.JPG" alt="Portrait of Maryam Ghorbanvirdi" />
+              <div class="scan" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="card-text">
+            <p><strong>Hi! I’m Maryam.</strong></p>
+            <p>I am a PhD student in Computer Science at The George Washington University, researching security in autonomous systems through privacy-preserving mechanisms. My work investigates how runtime behavior in cyber-physical and real-time systems can leak sensitive information through timing and behavioral side channels.</p>
+            <p>I am particularly interested in indistinguishability-inspired techniques that make system execution less predictable while preserving utility and safety.</p>
+            <p>Currently, I am working on differential privacy mechanisms to improve the security of such systems. More broadly, I aim to design security methods that are practical for real-world autonomous systems.</p>
+            <div class="social-links">
+              <a href="https://github.com/GhorbanvirdiMaryam" target="_blank" rel="noreferrer" class="social-btn">GitHub</a>
+              <a href="https://scholar.google.com/citations?user=Pcp8S5AAAAAJ&hl=en" target="_blank" rel="noreferrer" class="social-btn">Google Scholar</a>
+              <a href="https://www.linkedin.com/in/maryam-ghorbanvirdi/" target="_blank" rel="noreferrer" class="social-btn">LinkedIn</a>
+              <a href="CV.pdf" class="social-btn">CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-wrapper" id="projects" aria-labelledby="projects-title">
+      <div class="section-left reveal">
+        <div class="section-label">Research &amp; Projects</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="projects-title">What I am doing <span class="accent">these days...</span></h2>
+        <div class="projects-grid" id="projectsGrid"></div>
+      </div>
+    </section>
+    <section class="section-wrapper" id="publications" aria-labelledby="publications-title">
+      <div class="section-left reveal">
+        <div class="section-label">Publications</div>
+        <div class="section-description">Selected papers &amp; work under review.</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="publications-title">Publi<span class="accent">cations</span></h2>
+        <div class="pub-list">
+          <div class="pub-item">
+            <span class="pub-year">2026</span>
+            <div>
+              <div class="pub-title">SoK: Differential Privacy in Cyber-Physical and Autonomous Systems<span class="pub-tag">Under review</span></div>
+              <div class="pub-meta"><em>M. Ghorbanvirdi</em> — a taxonomy of DP in CPS and the Harpo privacy–utility–safety evaluation framework.</div>
+            </div>
+          </div>
+          <div class="pub-item">
+            <span class="pub-year">2022</span>
+            <div>
+              <div class="pub-title">Energy Efficient Multi-Clustering Using Grey Wolf Optimizer in Wireless Sensor Networks</div>
+              <div class="pub-meta"><em>M. Ghorbanvirdi, S. M. Mazinani</em> — International Journal of Information and Communication Technology Research.</div>
+            </div>
+          </div>
+          <div class="pub-item">
+            <span class="pub-year">2021</span>
+            <div>
+              <div class="pub-title">EEMC: Energy Efficient Multi-Clustering Using Grey Wolf Optimizer in WSNs</div>
+              <div class="pub-meta"><em>M. Ghorbanvirdi, S. M. Mazinani</em> — 11th International Conference on Computer Engineering and Knowledge (ICCKE).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-wrapper" id="talks" aria-labelledby="talks-title">
+      <div class="section-left reveal">
+        <div class="section-label">Talks &amp; Posters</div>
+        <div class="section-description">Workshops &amp; meetings where I presented my work.</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="talks-title">Talks &amp; <span class="accent">Posters</span></h2>
+        <div class="pub-list">
+          <a class="pub-item" href="https://ghorbanvirdimaryam.github.io/TPDP/TPDP.html" style="text-decoration: none; color: inherit;">
+            <span class="pub-year">2025</span>
+            <div>
+              <div class="pub-title">Schedule Indistinguishability: Applying Differential Privacy Models to Protect Runtime Timing Behaviors<span class="pub-tag">Poster</span></div>
+              <div class="pub-meta"><em>M. Ghorbanvirdi, S. Mohan</em> — Theory and Practice of Differential Privacy (TPDP), Google, Mountain View, CA.</div>
+            </div>
+          </a>
+          <a class="pub-item" href="https://ghorbanvirdimaryam.github.io/CPS-PI-Meeting/PIMeeting.html" style="text-decoration: none; color: inherit;">
+            <span class="pub-year">2025</span>
+            <div>
+              <div class="pub-title">Prevent Information Leakage in Real-Time Systems<span class="pub-tag">Poster + Talk</span></div>
+              <div class="pub-meta"><em>Presenter: M. Ghorbanvirdi · PI: S. Mohan</em> — NSF CPS Principal Investigators' Meeting, Nashville, TN.</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="section-wrapper" id="demo-section" aria-labelledby="dp-demo-title">
+      <div class="section-left reveal">
+        <div class="section-label">Interactive Demo</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="dp-demo-title">Differential <span class="accent">Privacy</span></h2>
+        <div class="card-text" style="margin-bottom: 1rem;">
+          <p>Adjust <strong>epsilon (ε)</strong> to see how privacy and noise change. Lower epsilon = stronger privacy but more noise. The noisy observation re-samples live — every release is a fresh draw.</p>
+        </div>
+        <div class="slider-container">
+          <label class="slider-label" for="eps">Epsilon value</label>
+          <div class="slider-wrapper">
+            <span style="font-family: var(--mono); color: var(--teal);">ε</span>
+            <input type="range" id="eps" min="0.2" max="5" step="0.1" value="1.2" />
+            <span class="eps-value" id="epsVal">1.2</span>
+          </div>
+        </div>
+        <canvas id="demo" class="demo-canvas" aria-label="Differential privacy demo chart"></canvas>
+        <p class="demo-legend">
+          <strong style="color: #35606d;">Teal line:</strong> true trajectory &nbsp;|&nbsp; <strong style="color: #6f8a6b;">Sage line:</strong> DP-noisy observations
+        </p>
+      </div>
+    </section>
+    <section class="section-wrapper" id="contact" aria-labelledby="contact-title">
+      <div class="section-left reveal">
+        <div class="section-label">Contact Page</div>
+      </div>
+      <div class="section-card reveal">
+        <h2 class="card-title" id="contact-title">Contact <span class="accent">Me</span></h2>
+        <div class="card-text" style="margin-bottom: 1rem;">
+          <p>Hello! Thanks for stopping by. If you have questions, collaboration ideas, or just want to say hi, feel free to email me at <strong>maryam.ghorbanvirdi@gwu.edu</strong> or use the form below.</p>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group half">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="e.g. bythursday@gmail.com" required />
+          </div>
+          <div class="form-group half">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" placeholder="Subject" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send Carrier Pigeon</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  <footer>
+    <p>© <span id="year"></span> Maryam Ghorbanvirdi • Privacy &amp; Security Researcher</p>
+    <p class="footer-status">status: <span class="ok">online</span> · dp-noise: enabled · ε = calibrated</p>
+  </footer>
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-btn" type="button" onclick="closeModal()" aria-label="Close modal">✕</button>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-subtitle" id="modalSubtitle"></p>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    /* ---------- typewriter ---------- */
+    const phrases = [
+      'differential privacy for runtime behavior',
+      'timing & behavioral side channels',
+      'indistinguishability in real-time systems',
+      'privacy · utility · safety tradeoffs',
+      'making execution unpredictable, safely'
+    ];
+    const typedEl = document.getElementById('typed');
+    if (reducedMotion) {
+      typedEl.textContent = phrases[0];
+    } else {
+      let pi = 0, ci = 0, deleting = false;
+      function typeTick() {
+        const phrase = phrases[pi];
+        if (!deleting) {
+          ci++;
+          typedEl.textContent = phrase.slice(0, ci);
+          if (ci === phrase.length) { deleting = true; setTimeout(typeTick, 2100); return; }
+          setTimeout(typeTick, 42 + Math.random() * 48);
+        } else {
+          ci--;
+          typedEl.textContent = phrase.slice(0, ci);
+          if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(typeTick, 380); return; }
+          setTimeout(typeTick, 22);
+        }
+      }
+      typeTick();
+    }
+    /* ---------- scroll progress + reveal ---------- */
+    const progress = document.getElementById('progress');
+    window.addEventListener('scroll', () => {
+      const h = document.documentElement;
+      const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+      progress.style.width = pct + '%';
+    }, { passive: true });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* ---------- projects ---------- */
+    const projects = [
+      {
+        title: 'Indistinguishability',
+        subtitle: 'Client–Server Application',
+        slug: 'timing-inference',
+        content: `
+          <h3>Overview</h3>
+          <p>My research studies how to protect runtime behavior in autonomous systems from timing and behavioral side-channel attacks. The main idea is to adapt concepts from differential privacy to improve the security of such systems, using a notion known as “indistinguishability”. In autonomous systems, exploitable information can leak through runtime behavior. These may reveal internal system state or even task structure. It has been shown that adversaries can use this information to trigger security problems.</p>
+        `
+      },
+      {
+        title: 'Realtime Systems',
+        subtitle: 'Privacy & temporal constraints in CPS',
+        slug: 'realtime-systems',
+        page: 'https://ghorbanvirdimaryam.github.io/RealTimeSystems/index.html'
+      },
+      {
+        title: 'DP Foundations',
+        subtitle: 'Technical theory & mechanisms',
+        slug: 'dp-foundations',
+        page: 'https://ghorbanvirdimaryam.github.io/differential-privacy-for-beginners/index.html'
+      },
+      {
+        title: 'My Research Journey',
+        subtitle: 'Indistinguishability using differential privacy methods for protecting timing behavior',
+        slug: 'research',
+        page: 'https://ghorbanvirdimaryam.github.io/journey/index.html'
+      },
+      {
+        title: 'Noise Types',
+        subtitle: 'Laplace, Gaussian, and more',
+        slug: 'noise-types',
+        content: `
+        <h3>Overview</h3>
+        <p>I explored different noise mechanisms for privacy-preserving real-time and autonomous systems, including Laplace, Gaussian, Rayleigh, Uniform, and other perturbation models.</p>
+        <h3>Focus</h3>
+        <p>The goal is to understand how different noise types affect unpredictability, privacy, and timing behavior in practice, especially when system deadlines and runtime constraints must still be respected.</p>
+        <h3>Status</h3>
+        <p>will be added soon.</p>
+        `
+      },
+      {
+        title: 'SoK: DP in CPS',
+        subtitle: 'Taxonomy & privacy-utility-safety framework',
+        slug: 'sok-dp-cps',
+        content: `
+          <h3>Overview</h3>
+          <p>This project is based on my Systematization of Knowledge (SoK) paper, which is currently under submission. The paper studies how differential privacy has been applied in cyber-physical and autonomous systems, with a focus on the broader interaction between privacy, utility, and safety.</p>
+          <h3>Focus</h3>
+          <p>The work organizes the literature through a three-dimensional taxonomy based on the type of protected data, the application domain, and where privacy noise is injected in the system. It also introduces Harpo, a practical black-box framework for evaluating prior work along three axes: privacy, utility, and safety.</p>
+          <h3>Key Insight</h3>
+          <p>A central observation of this work is that much of the existing literature emphasizes privacy mechanisms and utility tradeoffs, while safety is often underexplored or treated only indirectly.</p>
+          <h3>Status</h3>
+          <p>will be added soon.</p>
+        `
+      },
+      {
+        title: 'How to Write SoK',
+        subtitle: 'Methodology & best practices',
+        slug: 'how-to-write-sok',
+        content: `
+          <h3>Overview</h3>
+          <p>This project shares my experience of writing a solo SoK paper, from the early idea formation stage to organizing the literature, building a taxonomy, and shaping the final paper.</p>
+          <h3>Focus</h3>
+          <p>I plan to document how I started, how I selected and studied papers, how I identified gaps, and how I turned those observations into a structured SoK. My goal is to make the process clearer and more approachable for students and researchers who want to start writing a SoK paper.</p>
+          <h3>Status</h3>
+          <p>will be added soon.</p>
+        `
+      }
+    ];
+    const projectsGrid = document.getElementById('projectsGrid');
+    const modal = document.getElementById('projectModal');
+    function renderProjects() {
+      projectsGrid.innerHTML = '';
+      projects.forEach((project, idx) => {
+        let card;
+        if (project.page) {
+          card = document.createElement('a');
+          card.href = project.page;
+        } else {
+          card = document.createElement('div');
+          card.addEventListener('click', () => openModal(project.slug));
+        }
+        card.className = 'project-item';
+        card.innerHTML = `
+          <div class="project-num">module ${String(idx + 1).padStart(2, '0')}</div>
+          <div class="project-title">${project.title}</div>
+          <div class="project-description">${project.subtitle}</div>
+        `;
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+          card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+        });
+        projectsGrid.appendChild(card);
+      });
+    }
+    function openModal(slug) {
+      const project = projects.find(p => p.slug === slug);
+      if (!project) return;
+      document.getElementById('modalTitle').textContent = project.title;
+      document.getElementById('modalSubtitle').textContent = project.subtitle;
+      document.getElementById('modalBody').innerHTML = project.content || '';
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = 'auto';
+    }
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your message! I will get back to you soon.');
+      e.target.reset();
+    }
+    /* ---------- particle network background (with mouse link) ---------- */
+    const bg = document.getElementById('bg');
+    const bctx = bg.getContext('2d');
+    let particles = [];
+    let BW = 0, BH = 0, DPR = 1;
+    const mouse = { x: -1e9, y: -1e9 };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX * DPR;
+      mouse.y = e.clientY * DPR;
+    }, { passive: true });
+    window.addEventListener('mouseout', () => { mouse.x = -1e9; mouse.y = -1e9; });
+    function resizeBg() {
+      DPR = Math.max(1, window.devicePixelRatio || 1);
+      BW = Math.floor(window.innerWidth * DPR);
+      BH = Math.floor(window.innerHeight * DPR);
+      bg.width = BW;
+      bg.height = BH;
+      const count = Math.max(55, Math.floor((window.innerWidth * window.innerHeight) / 14000));
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * BW,
+        y: Math.random() * BH,
+        vx: (Math.random() - 0.5) * 0.28 * DPR,
+        vy: (Math.random() - 0.5) * 0.28 * DPR,
+        r: (0.9 + Math.random() * 1.2) * DPR,
+        a: 0.25 + Math.random() * 0.4
+      }));
+    }
+    function drawParticles() {
+      bctx.clearRect(0, 0, BW, BH);
+      const maxDist = 155 * DPR;
+      const maxDist2 = maxDist * maxDist;
+      const mouseDist = 210 * DPR;
+      const mouseDist2 = mouseDist * mouseDist;
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = BW;
+        if (p.x > BW) p.x = 0;
+        if (p.y < 0) p.y = BH;
+        if (p.y > BH) p.y = 0;
+        bctx.beginPath();
+        bctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        bctx.fillStyle = `rgba(70, 92, 76, ${p.a})`;
+        bctx.fill();
+      }
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const mdx = p.x - mouse.x;
+        const mdy = p.y - mouse.y;
+        const md2 = mdx * mdx + mdy * mdy;
+        if (md2 < mouseDist2) {
+          const alpha = 0.3 * (1 - md2 / mouseDist2);
+          bctx.strokeStyle = `rgba(80, 120, 130, ${alpha})`;
+          bctx.lineWidth = 0.9 * DPR;
+          bctx.beginPath();
+          bctx.moveTo(p.x, p.y);
+          bctx.lineTo(mouse.x, mouse.y);
+          bctx.stroke();
+        }
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < maxDist2) {
+            const alpha = 0.18 * (1 - d2 / maxDist2);
+            bctx.strokeStyle = `rgba(85, 105, 90, ${alpha})`;
+            bctx.lineWidth = 0.8 * DPR;
+            bctx.beginPath();
+            bctx.moveTo(p.x, p.y);
+            bctx.lineTo(q.x, q.y);
+            bctx.stroke();
+          }
+        }
+      }
+      if (!reducedMotion) requestAnimationFrame(drawParticles);
+    }
+    window.addEventListener('resize', resizeBg);
+    resizeBg();
+    drawParticles();
+    /* ---------- DP demo (live re-sampling) ---------- */
+    const demo = document.getElementById('demo');
+    const epsSlider = document.getElementById('eps');
+    const epsVal = document.getElementById('epsVal');
+    if (demo && epsSlider && epsVal) {
+      const dctx = demo.getContext('2d');
+      let dW = 0, dH = 0, dpr = 1;
+      function resizeDemo() {
+        const rect = demo.getBoundingClientRect();
+        dpr = Math.max(1, window.devicePixelRatio || 1);
+        dW = Math.floor(rect.width * dpr);
+        dH = Math.floor(rect.height * dpr);
+        demo.width = dW;
+        demo.height = dH;
+        drawDemo(parseFloat(epsSlider.value));
+      }
+      function randn() {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      }
+      function drawDemo(eps) {
+        dctx.clearRect(0, 0, dW, dH);
+        dctx.strokeStyle = 'rgba(80, 120, 130, 0.14)';
+        dctx.lineWidth = 1.25 * dpr;
+        dctx.strokeRect(10 * dpr, 10 * dpr, dW - 20 * dpr, dH - 20 * dpr);
+        const pad = 26 * dpr;
+        const x0 = pad;
+        const x1 = dW - pad;
+        const yMid = dH * 0.58;
+        const pts = [];
+        const N = 42;
+        for (let i = 0; i < N; i++) {
+          const t = i / (N - 1);
+          const x = x0 + (x1 - x0) * t;
+          const y =
+            yMid +
+            Math.sin(t * Math.PI * 1.2) * (-0.22 * dH) +
+            Math.sin(t * Math.PI * 3.0) * (-0.05 * dH);
+          pts.push({ x, y });
+        }
+        const sigma = Math.min(22, Math.max(2.5, 18 / eps)) * dpr;
+        dctx.lineWidth = 2.3 * dpr;
+        dctx.strokeStyle = 'rgba(53, 96, 109, 0.95)';
+        dctx.shadowColor = 'rgba(80, 120, 130, 0.35)';
+        dctx.shadowBlur = 8 * dpr;
+        dctx.beginPath();
+        dctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i < pts.length; i++) {
+          dctx.lineTo(pts[i].x, pts[i].y);
+        }
+        dctx.stroke();
+        dctx.shadowBlur = 0;
+        dctx.lineWidth = 2.3 * dpr;
+        dctx.strokeStyle = 'rgba(111, 138, 107, 0.8)';
+        dctx.beginPath();
+        for (let i = 0; i < pts.length; i++) {
+          const p = pts[i];
+          const nx = p.x + randn() * sigma;
+          const ny = p.y + randn() * sigma;
+          if (i === 0) dctx.moveTo(nx, ny);
+          else dctx.lineTo(nx, ny);
+        }
+        dctx.stroke();
+      }
+      epsSlider.addEventListener('input', function () {
+        const v = parseFloat(this.value);
+        epsVal.textContent = v.toFixed(1);
+        drawDemo(v);
+      });
+      window.addEventListener('resize', resizeDemo);
+      resizeDemo();
+      if (!reducedMotion) {
+        setInterval(() => drawDemo(parseFloat(epsSlider.value)), 1100);
+      }
+    }
+    renderProjects();
+  </script>
+</body>
+</html>
